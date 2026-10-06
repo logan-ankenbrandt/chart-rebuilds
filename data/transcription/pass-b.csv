@@ -1,0 +1,26 @@
+row,agency,total_musd,om_pct,dme_pct,note
+24,Nuclear Regulatory Commission,184,83,17,
+23,National Science Foundation,204,69,31,
+22,Small Business Administration,318,95,5,"DME label outside the bar"
+21,Environmental Protection Agency,412,85,15,
+20,U.S. Agency for International Development,413,72,28,
+19,Office of Personnel Management,500,86,14,
+18,Department of Housing and Urban Development,538,97,3,"DME label outside the bar"
+17,Department of Labor,956,75,25,
+16,General Services Administration,1376,72,28,
+15,Department of Education,1663,79,21,
+14,Department of the Interior,2017,83,17,
+13,Social Security Administration,2195,70,30,"row 13 appears in both bar crops, read the same in each"
+12,National Aeronautics and Space Administration,2418,87,13,"row 12 appears in both bar crops, read the same in each"
+11,Department of State,2784,76,24,
+10,Department of Commerce,3012,74,26,
+9,Department of Agriculture,4253,77,23,
+8,Department of Energy,4254,81,19,
+7,Department of Justice,4570,79,21,
+6,Department of Transportation,4941,60,40,
+5,Department of Veterans Affairs,8835,87,13,
+4,Department of the Treasury,9454,61,39,
+3,Department of Health and Human Services,10017,73,27,
+2,Department of Homeland Security,10727,91,9,
+1,Department of Defense,29095,83,17,
+0,Total planned spending for fiscal year 2025 (in millions),105136,79,21,"band: O&M 82828, DME 22308"
