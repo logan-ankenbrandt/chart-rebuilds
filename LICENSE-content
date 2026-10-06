@@ -1,0 +1,30 @@
+Content license: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Logan Ankenbrandt
+
+The slides (slides/figure1/*.pptx and their PDF and PNG renders), the logs,
+the README, CREDITS.md, checks.md, the data files' notes and the other text and
+images made for this repository are licensed under the Creative Commons
+Attribution 4.0 International License. To view a copy of this license, visit
+https://creativecommons.org/licenses/by/4.0/ or read the legal code at
+https://creativecommons.org/licenses/by/4.0/legalcode.
+
+You may share and adapt this material for any purpose, including commercially,
+as long as you give appropriate credit, link to the license, and indicate if
+changes were made.
+
+Attribution: "Chart Rebuilds by Logan Ankenbrandt, CC BY 4.0,
+https://github.com/logan-ankenbrandt/chart-rebuilds"
+
+The underlying government work is public. GAO-25-107795, its Figure 1 and the
+report text quoted here are a work of the U.S. government and are not subject
+to copyright protection in the United States (report page iii). This license
+covers only what was added for this repository: the selection and arrangement,
+the rebuilt and redesigned slides, the measurements, checks and logs. The
+printed values in data/figure1.csv are GAO's and carry no restriction from this
+license. The images in source/ are GAO's figure and report page as published.
+
+This repository is a portfolio reconstruction of a public GAO figure. It is not
+a GAO product and is not affiliated with or endorsed by GAO.
+
+The code in src/ is licensed separately under the MIT License (see LICENSE).
