@@ -85,7 +85,7 @@ text('Portfolio reconstruction of a public GAO figure. Not a GAO product.', { x:
 
 slide.addNotes([
   'Redesign of GAO-25-107795, Figure 1 (PDF page 11, printed page 5), for a slide read at a distance.',
-  `Title numbers are GAO's: about $83 billion (79 percent) of planned FY2025 IT spending for operations and maintenance (report page 4). The figure prints $${band.omUsd.toLocaleString('en-US')} million of $${band.total.toLocaleString('en-US')} million; the exact share is ${overall.toFixed(2)}%.`,
+  `Title numbers are GAO's: about $83 billion (79 percent) of planned FY2025 IT spending for operations and maintenance (report page 4). The figure prints $${band.omUsd.toLocaleString('en-US')} million of $${band.total.toLocaleString('en-US')} million, and the exact share is ${overall.toFixed(2)}%.`,
   'The bars are one native bar chart: right-click and choose Edit Data. Shares are the printed whole percents. Agencies with equal shares keep GAO\'s order, largest total first.',
   'The orange line is a drawn line at the computed 78.78% position of the axis. It does not move if the data change.',
   'Portfolio reconstruction of a public GAO figure. Not a GAO product.',
