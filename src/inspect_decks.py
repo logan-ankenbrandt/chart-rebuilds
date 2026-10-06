@@ -23,11 +23,11 @@ from pptx import Presentation
 from pptx.enum.chart import XL_CHART_TYPE
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 
+from writing_rules import violations
+
 ROOT = Path(__file__).resolve().parent.parent
 DECKS = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "slides" / "figure1"  # a folder holding faithful.pptx and redesign.pptx
 FOOTER = "Portfolio reconstruction of a public GAO figure. Not a GAO product."
-BANNED = re.compile(r"–|—|\b(delve|tapestry|leverage|robust|seamless|paradigm|synergy|holistic|utilize|streamline)",
-                    re.IGNORECASE)
 NS = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
 
@@ -116,7 +116,7 @@ def inspect(deck: Path, expected_type, categories: list[str], series: dict[str, 
 
     texts = all_text(slide)
     check("footer present", any(FOOTER in t for t in texts), FOOTER)
-    hits = sorted({m.group(0) for t in texts for m in BANNED.finditer(t)})
+    hits = sorted({v for t in texts for v in violations(t)})
     check("no dash characters or banned words in slide text and notes", not hits, ", ".join(hits) or "none")
     return slide, chart
 

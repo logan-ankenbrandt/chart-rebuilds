@@ -4,6 +4,7 @@ Cases:
   1. one charted value changed in the chart cache (HUD O&M 97 -> 96), workbook left alone
   2. a picture pasted onto the faithful slide
   3. value labels switched on for every bar of the redesign
+  4. an en dash pasted into the redesign's subtitle
 Each broken folder must make src/inspect_decks.py exit non-zero and name the expected check as FAIL.
 The untouched decks must pass.
 
@@ -81,9 +82,17 @@ def main() -> int:
     if code == 0 or "FAIL  redesign.pptx  value labels only on the five extremes" not in out:
         failures.append("labels on every bar were not caught")
 
+    d = copy_case("dash-in-text")
+    dash = chr(0x2013)
+    rewrite_part(d / "redesign.pptx", "ppt/slides/slide1.xml",
+                 lambda xml: xml.replace("operations and maintenance (O&amp;M)", f"operations {dash} maintenance (O&amp;M)", 1))
+    code, out = run(d)
+    if code == 0 or "FAIL  redesign.pptx  no dash characters or banned words" not in out:
+        failures.append("a dash in slide text was not caught")
+
     for f in failures:
         print("TEST FAILED:", f)
-    print("inspector tests:", "all 4 behave as expected" if not failures else f"{len(failures)} problem(s)")
+    print("inspector tests:", "all 5 behave as expected" if not failures else f"{len(failures)} problem(s)")
     return 1 if failures else 0
 
 
