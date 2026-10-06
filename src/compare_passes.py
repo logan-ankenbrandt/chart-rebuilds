@@ -12,6 +12,7 @@ Usage: python3 src/compare_passes.py
 """
 
 import csv
+import json
 import sys
 from pathlib import Path
 
@@ -71,7 +72,7 @@ def main() -> int:
         "",
         "Limit on independence: passes A and B were read by the same agent in one session, so B is a second reading from a different file in a different order, not a second person. Passes C and D do not depend on that agent's reading.",
         "",
-        f"Values compared: {compared} (25 rows: the total band and 24 agencies; 3 values each). "
+        f"Values compared: {compared} (25 rows, the total band and 24 agencies, with 3 values each). "
         f"Disagreements: {len(disagreements)}. Unresolved: {len(unresolved)}.",
         "",
     ]
@@ -90,6 +91,11 @@ def main() -> int:
     ]
     out = T / "compare.md"
     out.write_text("\n".join(lines))
+    (T / "compare.json").write_text(json.dumps({
+        "values_compared": compared, "disagreements": len(disagreements), "unresolved": len(unresolved),
+        "resolved": [{"row": r, "value": FIELDS[f], "passes": v, "kept": fix[0], "evidence": fix[1]}
+                     for r, f, v, fix in disagreements if fix],
+    }, indent=2) + "\n")
     print(f"compared {compared} values: {len(disagreements)} disagreements, {len(unresolved)} unresolved -> {out.relative_to(ROOT)}")
     for row, field, values in unresolved:
         print(f"UNRESOLVED row {row} {field}: {values}")

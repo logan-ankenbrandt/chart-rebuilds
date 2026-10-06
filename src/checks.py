@@ -80,10 +80,10 @@ def main() -> int:
 
     s = sum(a["total"] for a in ag)
     check("Agency totals sum to the printed total", s == total,
-          f"sum of the 24 printed totals = ${s:,}M; printed total = ${total:,}M; difference {s - total}")
+          f"sum of the 24 printed totals = ${s:,}M, printed total = ${total:,}M, difference {s - total}")
 
     check("O&M plus DME equals the printed total", om_usd + dme_usd == total,
-          f"${om_usd:,}M + ${dme_usd:,}M = ${om_usd + dme_usd:,}M; printed total ${total:,}M")
+          f"${om_usd:,}M + ${dme_usd:,}M = ${om_usd + dme_usd:,}M, printed total ${total:,}M")
 
     om_share = 100 * om_usd / total
     dme_share = 100 * dme_usd / total
@@ -94,22 +94,22 @@ def main() -> int:
 
     bad = [a["agency"] for a in ag if a["om"] + a["dme"] != 100]
     check("Each agency's two printed shares add to 100", not bad,
-          "all 24 rows add to 100" if not bad else "rows that do not: " + "; ".join(bad))
+          "all 24 rows add to 100" if not bad else "rows that do not: " + ", ".join(bad))
 
     weighted = sum(a["total"] * a["om"] for a in ag) / 100
     slack = sum(a["total"] * 0.5 for a in ag) / 100
     check("Rounded agency shares are consistent with the printed O&M dollars",
           abs(weighted - om_usd) <= slack,
           f"sum of total x printed O&M% = ${weighted:,.2f}M against printed ${om_usd:,}M "
-          f"(difference {weighted - om_usd:+,.2f}); whole-percent rounding allows up to +/-${slack:,.2f}M")
+          f"(difference {weighted - om_usd:+,.2f}). Whole-percent rounding allows up to +/-${slack:,.2f}M")
 
     # Order of the figure: by total, largest first.
     totals = [a["total"] for a in ag]
     strictly = all(totals[i] > totals[i + 1] for i in range(n - 1))
     gaps = sorted((totals[i] - totals[i + 1], ag[i]["agency"], ag[i + 1]["agency"]) for i in range(n - 1))
-    closest = "; ".join(f"{a} and {b}, ${g:,}M apart" for g, a, b in gaps[:2])
+    closest = " and ".join(f"{a} with {b} (${g:,}M apart)" for g, a, b in gaps[:2])
     check("Figure order is by total, largest first, with no ties", strictly,
-          f"totals strictly decrease down the figure; closest pairs: {closest}")
+          f"totals strictly decrease down the figure. Closest pairs: {closest}")
 
     # Bars measured in pixels against their printed labels.
     px = pixels()
@@ -121,12 +121,12 @@ def main() -> int:
     dev = [m - a["om"] for m, a in zip(measured, ag)]
     worst = max(range(n), key=lambda i: abs(dev[i]))
     check("Every bar matches its printed O&M label", max(abs(d) for d in dev) <= 0.5,
-          f"largest gap {dev[worst]:+.2f} points ({ag[worst]['agency']}); limit 0.5")
+          f"largest gap {dev[worst]:+.2f} points ({ag[worst]['agency']}), limit 0.5")
     check("Bars are drawn from the rounded percents", max(abs(d) for d in dev) <= 0.15,
           f"all 24 bars sit within {max(abs(d) for d in dev):.2f} points of their printed whole percent, "
           f"so the drawing carries no sub-percent detail that could order ties")
     check("Top band bar is drawn at the printed 79%", abs(band_bar - om_pct_band) <= 0.15,
-          f"band bar measures {band_bar:.2f}%; the exact share {om_share:.2f}% would sit "
+          f"band bar measures {band_bar:.2f}%. The exact share {om_share:.2f}% would sit "
           f"{(band_bar - om_share) * 619 / 100:.1f} px to the left at the figure's 300 ppi")
 
     # Redesign order: O&M share, highest first; ties keep the figure's order (largest total first).
@@ -135,7 +135,7 @@ def main() -> int:
     for a in ag:
         ties.setdefault(a["om"], []).append(a)
     tie_groups = {k: v for k, v in ties.items() if len(v) > 1}
-    tie_text = "; ".join(
+    tie_text = ". ".join(
         f"{k}%: " + ", ".join(f"{a['label']} (${a['total']:,}M)" for a in sorted(v, key=lambda a: -a["total"]))
         for k, v in sorted(tie_groups.items(), reverse=True)
     )
@@ -146,7 +146,7 @@ def main() -> int:
         for g in tie_groups.values()
     )
     check("Ties keep the figure's order in the redesign", kept,
-          f"{len(tie_groups)} tie groups, each in the same order as on the figure (largest total first): {tie_text}")
+          f"{len(tie_groups)} tie groups, each in the same order as on the figure (largest total first). {tie_text}")
 
     top3, bottom2 = ranked[:3], ranked[-2:]
     shares = [a["om"] for a in ag]
@@ -159,16 +159,16 @@ def main() -> int:
                 ("Treasury", 61), ("Transportation", 60)]
     got = [(a["label"], a["om"]) for a in top3 + bottom2]
     check("Extremes match the ones the redesign labels", got == expected,
-          "highest: " + ", ".join(f"{a['label']} {a['om']}%" for a in top3)
-          + "; lowest: " + ", ".join(f"{a['label']} {a['om']}%" for a in bottom2)
+          "Highest: " + ", ".join(f"{a['label']} {a['om']}%" for a in top3)
+          + ". Lowest: " + ", ".join(f"{a['label']} {a['om']}%" for a in bottom2)
           + ("" if got == expected else f" (expected {expected})"))
     record("Spread around the overall share",
-           f"{above} agencies above 79%, {at} at 79%, {below} below; median of the 24 shares {median:g}%, "
+           f"{above} agencies above 79%, {at} at 79%, {below} below. Median of the 24 shares {median:g}%, "
            f"unweighted mean {mean:.2f}%, dollar-weighted share {om_share:.2f}%")
 
     # Report text against the figure (quotes verified in source/gao-25-107795-quotes.md).
     check("Report text matches the figure", round(om_usd / 1000) == 83 and om_pct_band == 79 and dme_pct_band == 21,
-          f"PDF p. 10 says 'about $83 billion (79 percent)' and footnote 11 says 'The other 21 percent'; "
+          f"PDF p. 10 says 'about $83 billion (79 percent)' and footnote 11 says 'The other 21 percent'. "
           f"the figure prints ${om_usd:,}M (79%) and ${dme_usd:,}M (21%)")
 
     lines = [

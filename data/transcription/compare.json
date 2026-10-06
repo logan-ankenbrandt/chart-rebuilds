@@ -1,0 +1,19 @@
+{
+  "values_compared": 75,
+  "disagreements": 1,
+  "unresolved": 0,
+  "resolved": [
+    {
+      "row": 2,
+      "value": "O&M %",
+      "passes": {
+        "A": "91",
+        "B": "91",
+        "C": "21",
+        "D": "91"
+      },
+      "kept": "91",
+      "evidence": "OCR read '21%'. A 6x zoom of the label (crop 140 x 56 at x 1300, y 207, point filter) shows '91%'. The DME label beside it reads 9%, and 91 + 9 = 100."
+    }
+  ]
+}

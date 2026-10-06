@@ -11,7 +11,7 @@ Every printed value in GAO-25-107795 Figure 1 (PDF page 11, printed page 5) was 
 
 Limit on independence: passes A and B were read by the same agent in one session, so B is a second reading from a different file in a different order, not a second person. Passes C and D do not depend on that agent's reading.
 
-Values compared: 75 (25 rows: the total band and 24 agencies; 3 values each). Disagreements: 1. Unresolved: 0.
+Values compared: 75 (25 rows, the total band and 24 agencies, with 3 values each). Disagreements: 1. Unresolved: 0.
 
 | Row | Value | A | B | C | D | Kept | Evidence |
 |---|---|---|---|---|---|---|---|

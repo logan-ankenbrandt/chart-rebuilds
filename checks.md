@@ -7,20 +7,20 @@ Result: 15 of 15 checks pass.
 | Check | Result | Detail |
 |---|---|---|
 | 24 agency rows | pass | 24 agency rows in data/figure1.csv |
-| Agency totals sum to the printed total | pass | sum of the 24 printed totals = $105,136M; printed total = $105,136M; difference 0 |
-| O&M plus DME equals the printed total | pass | $82,828M + $22,308M = $105,136M; printed total $105,136M |
+| Agency totals sum to the printed total | pass | sum of the 24 printed totals = $105,136M, printed total = $105,136M, difference 0 |
+| O&M plus DME equals the printed total | pass | $82,828M + $22,308M = $105,136M, printed total $105,136M |
 | O&M share rounds to the printed 79% | pass | 82,828 / 105,136 = 78.78%, printed 79% |
 | DME share rounds to the printed 21% | pass | 22,308 / 105,136 = 21.22%, printed 21% |
 | Each agency's two printed shares add to 100 | pass | all 24 rows add to 100 |
-| Rounded agency shares are consistent with the printed O&M dollars | pass | sum of total x printed O&M% = $82,847.15M against printed $82,828M (difference +19.15); whole-percent rounding allows up to +/-$525.68M |
-| Figure order is by total, largest first, with no ties | pass | totals strictly decrease down the figure; closest pairs: Department of Energy and Department of Agriculture, $1M apart; U.S. Agency for International Development and Environmental Protection Agency, $1M apart |
+| Rounded agency shares are consistent with the printed O&M dollars | pass | sum of total x printed O&M% = $82,847.15M against printed $82,828M (difference +19.15). Whole-percent rounding allows up to +/-$525.68M |
+| Figure order is by total, largest first, with no ties | pass | totals strictly decrease down the figure. Closest pairs: Department of Energy with Department of Agriculture ($1M apart) and U.S. Agency for International Development with Environmental Protection Agency ($1M apart) |
 | Teal runs found: band, 24 bars, legend swatch | pass | 26 teal runs down x = 900 |
-| Every bar matches its printed O&M label | pass | largest gap -0.07 points (Department of State); limit 0.5 |
+| Every bar matches its printed O&M label | pass | largest gap -0.07 points (Department of State), limit 0.5 |
 | Bars are drawn from the rounded percents | pass | all 24 bars sit within 0.07 points of their printed whole percent, so the drawing carries no sub-percent detail that could order ties |
-| Top band bar is drawn at the printed 79% | pass | band bar measures 79.00%; the exact share 78.78% would sit 1.3 px to the left at the figure's 300 ppi |
-| Ties keep the figure's order in the redesign | pass | 4 tie groups, each in the same order as on the figure (largest total first): 87%: Veterans Affairs ($8,835M), NASA ($2,418M); 83%: Defense ($29,095M), Interior ($2,017M), Nuclear Regulatory Commission ($184M); 79%: Justice ($4,570M), Education ($1,663M); 72%: General Services Administration ($1,376M), USAID ($413M) |
-| Extremes match the ones the redesign labels | pass | highest: Housing and Urban Development 97%, Small Business Administration 95%, Homeland Security 91%; lowest: Treasury 61%, Transportation 60% |
-| Report text matches the figure | pass | PDF p. 10 says 'about $83 billion (79 percent)' and footnote 11 says 'The other 21 percent'; the figure prints $82,828M (79%) and $22,308M (21%) |
+| Top band bar is drawn at the printed 79% | pass | band bar measures 79.00%. The exact share 78.78% would sit 1.3 px to the left at the figure's 300 ppi |
+| Ties keep the figure's order in the redesign | pass | 4 tie groups, each in the same order as on the figure (largest total first). 87%: Veterans Affairs ($8,835M), NASA ($2,418M). 83%: Defense ($29,095M), Interior ($2,017M), Nuclear Regulatory Commission ($184M). 79%: Justice ($4,570M), Education ($1,663M). 72%: General Services Administration ($1,376M), USAID ($413M) |
+| Extremes match the ones the redesign labels | pass | Highest: Housing and Urban Development 97%, Small Business Administration 95%, Homeland Security 91%. Lowest: Treasury 61%, Transportation 60% |
+| Report text matches the figure | pass | PDF p. 10 says 'about $83 billion (79 percent)' and footnote 11 says 'The other 21 percent'. the figure prints $82,828M (79%) and $22,308M (21%) |
 
 ## Recorded facts
 
@@ -28,7 +28,7 @@ These are cited by the logs. They are not counted as checks.
 
 | Fact | Detail |
 |---|---|
-| Spread around the overall share | 11 agencies above 79%, 2 at 79%, 11 below; median of the 24 shares 79%, unweighted mean 78.96%, dollar-weighted share 78.78% |
+| Spread around the overall share | 11 agencies above 79%, 2 at 79%, 11 below. Median of the 24 shares 79%, unweighted mean 78.96%, dollar-weighted share 78.78% |
 
 ## Bar pixels, row by row
 
