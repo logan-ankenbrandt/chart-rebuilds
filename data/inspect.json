@@ -1,0 +1,210 @@
+{
+  "passed": 34,
+  "total": 34,
+  "results": [
+    {
+      "deck": "faithful.pptx",
+      "check": "one slide, 16:9",
+      "ok": true,
+      "detail": "1 slide, 13.333 x 7.500 in"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "exactly one native chart",
+      "ok": true,
+      "detail": "1 chart graphic frame(s)"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "chart type",
+      "ok": true,
+      "detail": "BAR_STACKED_100 (59) (expected BAR_STACKED_100 (59))"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "categories match data/figure1.csv",
+      "ok": true,
+      "detail": "24 categories in the expected order"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "series 'O&M' values match the CSV",
+      "ok": true,
+      "detail": "24 values"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "series 'DME' values match the CSV",
+      "ok": true,
+      "detail": "24 values"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "series names",
+      "ok": true,
+      "detail": "O&M, DME"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "embedded workbook present",
+      "ok": true,
+      "detail": "20,185 bytes"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "workbook categories match the CSV",
+      "ok": true,
+      "detail": "column A has 24 rows"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "workbook column B ('O&M') matches the CSV",
+      "ok": true,
+      "detail": "24 values"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "workbook column C ('DME') matches the CSV",
+      "ok": true,
+      "detail": "24 values"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "no pictures on the slide",
+      "ok": true,
+      "detail": "0 picture(s)"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "every shape inside the slide",
+      "ok": true,
+      "detail": "all inside"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "only Arial",
+      "ok": true,
+      "detail": "Arial"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "footer present",
+      "ok": true,
+      "detail": "Portfolio reconstruction of a public GAO figure. Not a GAO product."
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "no dash characters or banned words in slide text and notes",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "table names and totals match the CSV",
+      "ok": true,
+      "detail": "24 rows x 2 columns"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "outside DME labels carry the printed values",
+      "ok": true,
+      "detail": "3%, 5%"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "chart labels switched off only where text boxes replace them",
+      "ok": true,
+      "detail": "point indexes 17, 21"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "one slide, 16:9",
+      "ok": true,
+      "detail": "1 slide, 13.333 x 7.500 in"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "exactly one native chart",
+      "ok": true,
+      "detail": "1 chart graphic frame(s)"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "chart type",
+      "ok": true,
+      "detail": "BAR_CLUSTERED (57) (expected BAR_CLUSTERED (57))"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "categories match data/figure1.csv",
+      "ok": true,
+      "detail": "24 categories in the expected order"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "series 'O&M share of planned FY2025 IT spending' values match the CSV",
+      "ok": true,
+      "detail": "24 values"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "series names",
+      "ok": true,
+      "detail": "O&M share of planned FY2025 IT spending"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "embedded workbook present",
+      "ok": true,
+      "detail": "19,317 bytes"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "workbook categories match the CSV",
+      "ok": true,
+      "detail": "column A has 24 rows"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "workbook column B ('O&M share of planned FY2025 IT spending') matches the CSV",
+      "ok": true,
+      "detail": "24 values"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "no pictures on the slide",
+      "ok": true,
+      "detail": "0 picture(s)"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "every shape inside the slide",
+      "ok": true,
+      "detail": "all inside"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "only Arial",
+      "ok": true,
+      "detail": "Arial"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "footer present",
+      "ok": true,
+      "detail": "Portfolio reconstruction of a public GAO figure. Not a GAO product."
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "no dash characters or banned words in slide text and notes",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "value labels only on the five extremes",
+      "ok": true,
+      "detail": "Housing and Urban Development 97%; Small Business Administration 95%; Homeland Security 91%; Treasury 61%; Transportation 60%"
+    }
+  ]
+}
