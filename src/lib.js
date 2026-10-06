@@ -1,0 +1,75 @@
+// Shared helpers for the two slide generators.
+const fs = require('fs');
+const path = require('path');
+const JSZip = require('jszip');
+
+const ROOT = path.resolve(__dirname, '..');
+
+// Minimal RFC 4180 reader: quoted fields, doubled quotes, commas inside quotes.
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let quoted = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quoted) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') quoted = false;
+      else field += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      row.push(field); rows.push(row); row = []; field = '';
+    } else field += c;
+  }
+  if (field || row.length) { row.push(field); rows.push(row); }
+  const [header, ...body] = rows.filter((r) => r.length > 1);
+  return body.map((r) => Object.fromEntries(header.map((h, i) => [h, r[i]])));
+}
+
+// data/figure1.csv: row 0 is the top band, rows 1 to 24 are the agencies in the figure's order.
+function loadFigure1() {
+  const rows = parseCsv(fs.readFileSync(path.join(ROOT, 'data', 'figure1.csv'), 'utf8'));
+  const band = rows[0];
+  const agencies = rows.slice(1).map((r) => ({
+    order: Number(r.order),
+    agency: r.agency,
+    label: r.redesign_label,
+    total: Number(r.total_musd),
+    om: Number(r.om_pct),
+    dme: Number(r.dme_pct),
+  }));
+  if (agencies.length !== 24) throw new Error(`expected 24 agencies, found ${agencies.length}`);
+  return {
+    band: {
+      total: Number(band.total_musd), om: Number(band.om_pct), dme: Number(band.dme_pct),
+      omUsd: Number(band.om_musd), dmeUsd: Number(band.dme_musd),
+    },
+    agencies,
+  };
+}
+
+// "$29,095" style, as printed on the figure.
+const dollars = (n) => '$' + n.toLocaleString('en-US');
+
+// Writes the deck, then lets `edit(zip)` adjust package parts that pptxgenjs cannot express.
+async function writeDeck(pptx, outPath, edit) {
+  const buf = await pptx.write({ outputType: 'nodebuffer' });
+  const zip = await JSZip.loadAsync(buf);
+  if (edit) await edit(zip);
+  const out = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, out);
+  return outPath;
+}
+
+// The single chart part in a one-chart deck.
+async function chartPart(zip) {
+  const names = Object.keys(zip.files).filter((n) => /^ppt\/charts\/chart\d+\.xml$/.test(n));
+  if (names.length !== 1) throw new Error(`expected one chart part, found ${names.length}`);
+  return { name: names[0], xml: await zip.file(names[0]).async('string') };
+}
+
+module.exports = { ROOT, loadFigure1, dollars, writeDeck, chartPart };
