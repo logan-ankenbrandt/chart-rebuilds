@@ -6,9 +6,10 @@ embedded image, the rebuild is a 300 dpi render of faithful.pdf cropped at the f
 lands the rebuild's ink on the source's ink, and the share of source ink pixels covered at that shift.
 A shift of (0, 0) means the element is where GAO drew it.
 
-Usage: python3 src/fit_offsets.py <source.png> <rebuild.png>
+Usage: python3 src/fit_offsets.py <source.png> <rebuild.png> [out.json]
 """
 
+import json
 import subprocess
 import sys
 
@@ -22,6 +23,11 @@ REGIONS = {
     "band O&M 79%": (1245, 80, 1310, 108),
     "band DME $22,308": (1328, 42, 1450, 78),
     "band DME 21%": (1383, 80, 1445, 108),
+    "band bar outline": (830, 20, 1200, 130),
+    "row 1 bar outline": (830, 145, 1200, 205),
+    "row 1 divider": (1340, 147, 1362, 203),
+    "row 24 bar outline": (830, 1540, 1200, 1600),
+    "row 24 divider": (1340, 1542, 1362, 1598),
     "row 1 name": (8, 160, 330, 200),
     "row 1 total": (690, 160, 815, 200),
     "row 1 O&M label": (1200, 158, 1345, 190),
@@ -65,9 +71,15 @@ def best_shift(src: bytes, reb: bytes, box: tuple[int, int, int, int], reach: in
 def main() -> None:
     src, reb = gray(sys.argv[1]), gray(sys.argv[2])
     print(f"{'element':24s} {'dx':>4s} {'dy':>4s}  covered")
+    found = {}
     for name, box in REGIONS.items():
         dx, dy, cover = best_shift(src, reb, box)
+        found[name] = {"dx": dx, "dy": dy, "covered": round(cover, 2)}
         print(f"{name:24s} {dx:4d} {dy:4d}  {cover:.2f}")
+    if len(sys.argv) > 3:
+        with open(sys.argv[3], "w") as f:
+            json.dump(found, f, indent=2)
+            f.write("\n")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,147 @@
+{
+  "band label, line 1": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.9
+  },
+  "band label, line 2": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.87
+  },
+  "band total $105,136": {
+    "dx": 0,
+    "dy": -1,
+    "covered": 0.82
+  },
+  "band O&M $82,828": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.88
+  },
+  "band O&M 79%": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.73
+  },
+  "band DME $22,308": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.85
+  },
+  "band DME 21%": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.71
+  },
+  "band bar outline": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.99
+  },
+  "row 1 bar outline": {
+    "dx": 0,
+    "dy": 1,
+    "covered": 1.0
+  },
+  "row 1 divider": {
+    "dx": -1,
+    "dy": 1,
+    "covered": 1.0
+  },
+  "row 24 bar outline": {
+    "dx": 0,
+    "dy": -1,
+    "covered": 1.0
+  },
+  "row 24 divider": {
+    "dx": -1,
+    "dy": -1,
+    "covered": 1.0
+  },
+  "row 1 name": {
+    "dx": 0,
+    "dy": 1,
+    "covered": 0.85
+  },
+  "row 1 total": {
+    "dx": 0,
+    "dy": 3,
+    "covered": 0.85
+  },
+  "row 1 O&M label": {
+    "dx": 3,
+    "dy": -1,
+    "covered": 0.73
+  },
+  "row 1 DME label": {
+    "dx": -1,
+    "dy": -1,
+    "covered": 0.63
+  },
+  "row 12 name": {
+    "dx": -1,
+    "dy": 0,
+    "covered": 0.74
+  },
+  "row 12 total": {
+    "dx": 0,
+    "dy": -1,
+    "covered": 0.83
+  },
+  "row 12 O&M label": {
+    "dx": 5,
+    "dy": -2,
+    "covered": 0.7
+  },
+  "row 24 name": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.79
+  },
+  "row 24 total": {
+    "dx": 0,
+    "dy": -4,
+    "covered": 0.82
+  },
+  "row 24 O&M label": {
+    "dx": 3,
+    "dy": -3,
+    "covered": 0.73
+  },
+  "HUD 3% (outside)": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.65
+  },
+  "SBA 5% (outside)": {
+    "dx": 0,
+    "dy": -1,
+    "covered": 0.66
+  },
+  "axis rule": {
+    "dx": -1,
+    "dy": 0,
+    "covered": 1.0
+  },
+  "axis numbers": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.84
+  },
+  "axis title": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.78
+  },
+  "legend": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.64
+  },
+  "source line": {
+    "dx": 0,
+    "dy": 0,
+    "covered": 0.72
+  }
+}
