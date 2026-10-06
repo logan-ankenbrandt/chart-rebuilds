@@ -1,0 +1,23 @@
+dataviz skill palette validator, run 2026-10-06: node scripts/validate_palette.js "<palette>" --mode light
+
+Palette #2F5D8A,#D55E00
+Palette (light, surface #fcfcfb, categorical): 2 slots
+  [PASS] Lightness band         all 2 inside L 0.43 to 0.77
+  [FAIL] Chroma floor           below floor (reads gray): [["#2F5D8A",0.089]]
+  [PASS] CVD separation         worst adjacent #D55E00↔#2F5D8A ΔE 19.8 (protan) · tritan 32.6
+  [PASS] Normal-vision floor    worst adjacent #D55E00↔#2F5D8A ΔE 29.8 (normal)
+  [PASS] Contrast vs surface    all 2 >= 3:1
+
+  → FAILED, fix the marked checks  (CVD in the 6 to 8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+
+Palette #2B5D96,#D55E00
+Palette (light, surface #fcfcfb, categorical): 2 slots
+  [PASS] Lightness band         all 2 inside L 0.43 to 0.77
+  [PASS] Chroma floor           all 2 >= 0.1
+  [PASS] CVD separation         worst adjacent #D55E00↔#2B5D96 ΔE 21.3 (protan) · tritan 32.3
+  [PASS] Normal-vision floor    worst adjacent #D55E00↔#2B5D96 ΔE 30.9 (normal)
+  [PASS] Contrast vs surface    all 2 >= 3:1
+
+  → ALL CHECKS PASS  (CVD in the 6 to 8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+
+Dash characters in the validator output were rewritten as "to" and ":" for this copy.
