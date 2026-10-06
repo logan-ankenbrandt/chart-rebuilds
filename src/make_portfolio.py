@@ -108,7 +108,7 @@ FAITHFUL_LOG = {
         NOT_POWERPOINT,
     ],
     "checks": [
-        {"what": "Transcription in four passes: A, the PDF image by eye; B, GAO's web JPEG by eye in reverse order; C, tesseract OCR; D, the sources agent's sheet, opened last",
+        {"what": "Transcription in four passes: the PDF image by eye (A), GAO's web JPEG by eye in reverse order (B), tesseract OCR (C) and the sources agent's sheet, opened last (D)",
          "result": f"{cmp_['values_compared']} values compared, {cmp_['disagreements']} disagreement: OCR read row {fix['row']}'s O&M label as {fix['passes']['C']}%. A 6x zoom shows {fix['kept']}%, and the DME label beside it is 9% (data/transcription/compare.md). Passes A and B were read by the same agent, so C and D are the independent ones."},
         {"what": "24 agency totals against the printed total",
          "result": f"Sum {money(chk['sum_of_totals'])} equals the printed {money(chk['printed_total'])}."},

@@ -51,7 +51,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 
 | Check | Result |
 |---|---|
-| Transcription in four passes: A, the PDF image by eye; B, GAO's web JPEG by eye in reverse order; C, tesseract OCR; D, the sources agent's sheet, opened last | 75 values compared, 1 disagreement: OCR read row 2's O&M label as 21%. A 6x zoom shows 91%, and the DME label beside it is 9% (data/transcription/compare.md). Passes A and B were read by the same agent, so C and D are the independent ones. |
+| Transcription in four passes: the PDF image by eye (A), GAO's web JPEG by eye in reverse order (B), tesseract OCR (C) and the sources agent's sheet, opened last (D) | 75 values compared, 1 disagreement: OCR read row 2's O&M label as 21%. A 6x zoom shows 91%, and the DME label beside it is 9% (data/transcription/compare.md). Passes A and B were read by the same agent, so C and D are the independent ones. |
 | 24 agency totals against the printed total | Sum $105,136M equals the printed $105,136M. |
 | O&M and DME shares | $82,828M / $105,136M = 78.78%, printed 79%. $22,308M = 21.22%, printed 21%. The two add to $105,136M. |
 | Rounding of each agency's shares | All 24 rows add to 100. The rounded shares imply $82,847.15M of O&M against the printed $82,828M, inside the +/-$525.68M that whole-percent rounding allows. |
