@@ -2,7 +2,8 @@
 
 source.png is GAO's figure as published (the PDF's own image plus the caption and rule from the report
 page), placed on a blank 16:9 canvas exactly where the faithful slide puts its rebuild, with a credit line.
-overlay.png blends the rebuild render over it at 50 percent (the shared _tools/overlay.sh).
+overlay.png blends the rebuild render over it at 50 percent (the same two ImageMagick steps as the portfolio
+workspace's _tools/overlay.sh, inlined so this repo stands alone).
 
 RMSE is measured three ways (0 is identical, 1 is opposite): the whole 96 dpi slide, the figure region at
 96 dpi, and the figure region at 300 dpi, where the source image is used at its native resolution.
@@ -20,7 +21,6 @@ OUT = ROOT / "slides" / "figure1"
 SCRATCH = ROOT / "scratch" / "overlay"
 FIGURE = ROOT / "source" / "gao-25-107795-figure1-masked-1500x1896.png"
 PAGE200 = ROOT / "source" / "gao-25-107795-page-11-masked-200dpi.png"
-OVERLAY_SH = ROOT.parent / "_tools" / "overlay.sh"
 FONT = "/System/Library/Fonts/Supplemental/Arial.ttf"
 
 # Figure origin on the slide at 300 dpi (4.1667 in, 0.6667 in), as in src/build-faithful.js.
@@ -60,9 +60,9 @@ def main() -> None:
 
     render = OUT / "faithful.png"
     overlay = OUT / "overlay.png"
-    printed = run("bash", str(OVERLAY_SH), str(source), str(render), str(overlay))
-    full96 = float(re.search(r"\(([\d.]+)\)", printed).group(1))
-    run("magick", str(overlay), "-depth", "8", "-strip", str(overlay))
+    run("magick", str(source), str(render), "-compose", "blend", "-define", "compose:args=50,50", "-composite",
+        "-depth", "8", "-strip", str(overlay))
+    full96 = rmse(source, render)
 
     fig_src96, fig_reb96 = SCRATCH / "fig-src-96.png", SCRATCH / "fig-reb-96.png"
     for src, dst in ((source, fig_src96), (render, fig_reb96)):
