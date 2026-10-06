@@ -1,0 +1,14 @@
+{
+  "name": "chart-rebuilds",
+  "version": "1.0.0",
+  "description": "GAO-25-107795 Figure 1 rebuilt as a native PowerPoint chart and redesigned as an executive slide",
+  "scripts": {
+    "build": "node src/build-faithful.js && node src/build-redesign.js"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  },
+  "private": true
+}

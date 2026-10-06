@@ -1,0 +1,5 @@
+node_modules/
+.venv/
+scratch/
+__pycache__/
+.DS_Store
