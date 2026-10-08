@@ -49,7 +49,7 @@ SOURCE = {
 NOT_POWERPOINT = {
     "what": "No step in this build opened the file in Microsoft PowerPoint.",
     "evidence": "The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name "
-                "PptxGenJS 4.0.1 as the application and say Claude Code agents generated it (the inspector checks this). "
+                "PptxGenJS 4.0.1 as the application (the inspector checks this). "
                 "Renders, the overlay and every position calibration come from LibreOffice, so text positions in "
                 "PowerPoint are unchecked.",
 }
@@ -122,7 +122,7 @@ FAITHFUL_LOG = {
         {"what": "Order",
          "result": "Totals strictly decrease down the figure. The closest pairs, Energy with Agriculture and USAID with EPA, are each $1M apart."},
         {"what": "Inspector (python-pptx) on faithful.pptx",
-         "result": f"{passed(f_ins)} of {len(f_ins)} checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV with a frame as tall as its 24 rows, outside labels, no pictures, Arial only (theme fonts too), footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails."},
+         "result": f"{passed(f_ins)} of {len(f_ins)} checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV with a frame as tall as its 24 rows, outside labels, no pictures, Arial only (theme fonts too), footer present, file properties that name PptxGenJS. A test builds broken decks and each one fails."},
         {"what": "Overlay on the published figure",
          "result": f"RMSE {ovl['rmse_figure_300dpi']} on the figure at 300 dpi (the source image at its native resolution), {ovl['rmse_figure_96dpi']} at 96 dpi and {ovl['rmse_slide_96dpi']} for the whole slide, where 0 means identical. Bar outlines and dividers land within {bar_px} px at 300 ppi."},
     ],
@@ -203,7 +203,7 @@ REDESIGN_LOG = {
         {"what": "Palette",
          "result": "The dataviz validator passes #2B5D96 with #D55E00 on the lightness band, chroma floor, colorblind separation (delta E 21.3), normal-vision floor and contrast (data/palette-check.txt)."},
         {"what": "Inspector (python-pptx) on redesign.pptx",
-         "result": f"{passed(r_ins)} of {len(r_ins)} checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only (theme fonts too), footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code."},
+         "result": f"{passed(r_ins)} of {len(r_ins)} checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only (theme fonts too), footer present, no dash characters or banned words, file properties that name PptxGenJS."},
         {"what": "Render review",
          "result": "All 24 names visible with no overlaps at 96 and 200 dpi. An earlier render that dropped every other name was fixed by setting the label interval to 1."},
     ],

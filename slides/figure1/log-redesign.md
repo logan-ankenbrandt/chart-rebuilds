@@ -51,7 +51,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | The reference line is a drawn shape, not part of the chart data. | It sits at 78.78% of the plot width and measured 78.81% in a 300 dpi render (data/reference-line.json). It does not move if the chart data change, and the speaker notes say so. |
 | Ties are ordered by total spending because the source cannot rank them. | Four groups share a printed share: 87% (Veterans Affairs, NASA), 83% (Defense, Interior, Nuclear Regulatory Commission), 79% (Justice, Education) and 72% (General Services Administration, USAID). GAO drew the bars from rounded percents (checks.md). |
 | The published PDF and PNG use Liberation Sans where the .pptx names Arial. | pdffonts lists only LiberationSans and LiberationSans-Bold in both PDFs. LibreOffice substitutes this metric-compatible font, so widths and line breaks hold and glyph shapes differ slightly. |
-| No step in this build opened the file in Microsoft PowerPoint. | The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name PptxGenJS 4.0.1 as the application and say Claude Code agents generated it (the inspector checks this). Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked. |
+| No step in this build opened the file in Microsoft PowerPoint. | The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name PptxGenJS 4.0.1 as the application (the inspector checks this). Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked. |
 
 ## Checks
 
@@ -63,7 +63,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Reference line position | 78.81% of the axis in a 300 dpi render, against a target of 78.78% (data/reference-line.json). |
 | Numbers in the title, subtitle and notes | 'about $83 billion' is $82,828M rounded, 79% is 78.78% rounded and 21% is 21.22% rounded, as GAO prints them (checks.md). The subtitle's 60% and 97% are the printed shares of Transportation and Housing and Urban Development (data/figure1.csv rows 6 and 18), the lowest and highest of the 24. |
 | Palette | The dataviz validator passes #2B5D96 with #D55E00 on the lightness band, chroma floor, colorblind separation (delta E 21.3), normal-vision floor and contrast (data/palette-check.txt). |
-| Inspector (python-pptx) on redesign.pptx | 17 of 17 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only (theme fonts too), footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code. |
+| Inspector (python-pptx) on redesign.pptx | 17 of 17 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only (theme fonts too), footer present, no dash characters or banned words, file properties that name PptxGenJS. |
 | Render review | All 24 names visible with no overlaps at 96 and 200 dpi. An earlier render that dropped every other name was fixed by setting the label interval to 1. |
 
 Portfolio reconstruction of a public GAO figure. Not a GAO product.
