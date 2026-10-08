@@ -71,7 +71,7 @@
           },
           {
             "what": "Added a slide footer: the source line and 'Portfolio reconstruction of a public GAO figure. Not a GAO product.'",
-            "why": "Every rebuilt slide carries it, so the slide cannot pass for a GAO product."
+            "why": "Every rebuilt slide carries it, so the slide cannot pass for a GAO product. It sits 0.28 in from the bottom edge, inside the redesign's 0.5 in margin, because the figure fills the slide height at its printed size and its source line ends at about 6.92 in."
           }
         ],
         "kept": [
@@ -88,7 +88,7 @@
             "why": "Measured on the 300 ppi figure from cap heights and word widths, and from the PDF's text layer for the caption, where the word 'Figure' is 27.56 pt wide, the width of 9 pt Arial Bold."
           },
           {
-            "what": "The caption, the legend's two definitions and the source line, word for word.",
+            "what": "The caption, the legend's two definitions (with GAO's bold '=' signs) and the source line, word for word.",
             "why": "They carry the figure's title and its definitions of DME and O&M."
           }
         ],
@@ -110,8 +110,8 @@
             "why": "GAO's totals run on a slightly longer pitch than its bars. With one table on the bars' pitch, the row 1 total sits 3 px low and the row 24 total 4 px high at 300 ppi (about 1 pt), while names stay within 1 px. One table keeps the slide simple."
           },
           {
-            "what": "Moving the chart's inside labels by hand to match GAO's padding.",
-            "why": "LibreOffice places inside-end labels 3 to 5 px (300 ppi) closer to the segment end than GAO did. Hand-placed labels would stop following the data."
+            "what": "Giving the chart's inside labels fixed offsets to match GAO's padding.",
+            "why": "LibreOffice places inside-end labels 3 to 5 px (300 ppi) closer to the segment end than GAO did. Fixed-offset labels would stop following the data."
           }
         ],
         "flagged": [
@@ -159,11 +159,11 @@
           },
           {
             "what": "Inspector (python-pptx) on faithful.pptx",
-            "result": "20 of 20 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails."
+            "result": "22 of 22 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV with a frame as tall as its 24 rows, outside labels, no pictures, Arial only (theme fonts too), footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails."
           },
           {
             "what": "Overlay on the published figure",
-            "result": "RMSE 0.1425 on the figure at 300 dpi (the source image at its native resolution), 0.1387 at 96 dpi and 0.0908 for the whole slide, where 0 means identical. Bar outlines and dividers land within 1 px at 300 ppi."
+            "result": "RMSE 0.1427 on the figure at 300 dpi (the source image at its native resolution), 0.1388 at 96 dpi and 0.0908 for the whole slide, where 0 means identical. Bar outlines and dividers land within 1 px at 300 ppi."
           }
         ]
       },
@@ -192,8 +192,12 @@
       "log": {
         "changed": [
           {
-            "what": "Replaced GAO's figure title with an action title: 'Agencies planned 79% of FY2025 IT spending, about $83 billion, for operations and maintenance'.",
+            "what": "Replaced GAO's figure title with an action title: 'Agencies planned 79% of FY2025 IT spending, about $83 billion, for operations and maintenance (O&M)'.",
             "why": "A slide read at a distance needs its finding in the title. The numbers and hedges are GAO's: 'about $83 billion (79 percent) in planned total IT spending for fiscal year 2025 was intended for operations and maintenance' (PDF p. 10, printed p. 4)."
+          },
+          {
+            "what": "Set the subtitle to the spread: 'Planned O&M share by agency ranged from 60% (Transportation) to 97% (Housing and Urban Development)'.",
+            "why": "The title gives the all-agency 79%, and the 24 bars show how far agencies sit from it, which GAO also points out: the figure 'shows how agencies can vary in their percentage of operations and maintenance spending' (PDF p. 10). The subtitle states that spread from the lowest and highest rows of data/figure1.csv, and says 'planned' as GAO does."
           },
           {
             "what": "Sorted the 24 agencies by O&M share, highest first, in place of GAO's order by total spending.",
@@ -221,7 +225,7 @@
           },
           {
             "what": "Added a notes column: what the line is, the report's separate 'about 80 percent' statement, and GAO's legacy caveat.",
-            "why": "These are the qualifiers a reader needs before repeating the number. Each one cites the report page it comes from."
+            "why": "These are the qualifiers a reader needs before repeating the number. Each one cites the report page it comes from. The three notes are paragraphs of one text box at one fixed gap, starting level with the top of the plot."
           },
           {
             "what": "Colored the bars #2B5D96 and the line #D55E00 (vermilion).",
@@ -234,7 +238,7 @@
             "why": "The title claims no more precision or certainty than the report."
           },
           {
-            "what": "The definitions: operations and maintenance (O&M) spelled out in the subtitle, and the other 21% named as development, modernization and enhancement.",
+            "what": "The definitions: operations and maintenance (O&M) spelled out in the title, and the other 21% named as development, modernization and enhancement.",
             "why": "They come from the figure's legend and the report's footnote 11 (PDF p. 10)."
           },
           {
@@ -242,7 +246,7 @@
             "why": "The scope is from PDF p. 10 and the source line from the figure."
           },
           {
-            "what": "Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, chart text 11 to 12 pt, source and footer 10 pt.",
+            "what": "Arial throughout, theme fonts included: title 28 pt, subtitle 16 pt, notes 14 pt, chart text 11 to 12 pt, source and footer 10 pt.",
             "why": "The deck's type standard. Chart text sits below the 14 pt body size because of the 24 rows (see Rejected), and nothing is under 10 pt."
           }
         ],
@@ -320,8 +324,8 @@
             "result": "78.81% of the axis in a 300 dpi render, against a target of 78.78% (data/reference-line.json)."
           },
           {
-            "what": "Numbers in the title and notes",
-            "result": "'about $83 billion' is $82,828M rounded, 79% is 78.78% rounded and 21% is 21.22% rounded, as GAO prints them (checks.md)."
+            "what": "Numbers in the title, subtitle and notes",
+            "result": "'about $83 billion' is $82,828M rounded, 79% is 78.78% rounded and 21% is 21.22% rounded, as GAO prints them (checks.md). The subtitle's 60% and 97% are the printed shares of Transportation and Housing and Urban Development (data/figure1.csv rows 6 and 18), the lowest and highest of the 24."
           },
           {
             "what": "Palette",
@@ -329,7 +333,7 @@
           },
           {
             "what": "Inspector (python-pptx) on redesign.pptx",
-            "result": "16 of 16 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code."
+            "result": "17 of 17 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only (theme fonts too), footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code."
           },
           {
             "what": "Render review",
@@ -344,22 +348,22 @@
     {
       "label": "Faithful rebuild (PowerPoint)",
       "path": "slides/figure1/faithful.pptx",
-      "bytes": 25647
+      "bytes": 25631
     },
     {
       "label": "Faithful rebuild (PDF)",
       "path": "slides/figure1/faithful.pdf",
-      "bytes": 103338
+      "bytes": 103388
     },
     {
       "label": "Redesign (PowerPoint)",
       "path": "slides/figure1/redesign.pptx",
-      "bytes": 23183
+      "bytes": 23146
     },
     {
       "label": "Redesign (PDF)",
       "path": "slides/figure1/redesign.pdf",
-      "bytes": 77896
+      "bytes": 78958
     },
     {
       "label": "Figure 1 values with where each was printed (CSV)",

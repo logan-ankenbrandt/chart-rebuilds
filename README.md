@@ -13,7 +13,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Deck | [`faithful.pptx`](slides/figure1/faithful.pptx), [PDF](slides/figure1/faithful.pdf) | [`redesign.pptx`](slides/figure1/redesign.pptx), [PDF](slides/figure1/redesign.pdf) |
 | Chart | One native 100% stacked bar chart with the 48 printed percents embedded, plus a native table for the names and dollar totals | One native bar chart of each agency's O&M share, sorted, with a line at the all-agency 79% |
 | Log | [`log-faithful.md`](slides/figure1/log-faithful.md) | [`log-redesign.md`](slides/figure1/log-redesign.md) |
-| Compared with GAO's figure | [`overlay.png`](slides/figure1/overlay.png), RMSE 0.1425 on the figure at 300 dpi | |
+| Compared with GAO's figure | [`overlay.png`](slides/figure1/overlay.png), RMSE 0.1427 on the figure at 300 dpi | |
 
 The faithful rebuild, then the rebuild laid over GAO's figure at 50 percent:
 
@@ -33,7 +33,7 @@ GAO drew every bar from its rounded whole percent: all 24 bars measure within 0.
 
 The report also says agencies "have typically reported spending about 80 percent" on O&M. That is a general statement. Both slides use the FY2025 figure, and the redesign's notes keep the two apart, along with GAO's caveat that it is uncertain how much O&M spending goes to legacy technology.
 
-Every value was transcribed four times (two readings by eye from two different copies of the figure, an OCR pass, and a separate agent's transcription). The 75 values disagreed once: OCR read 91% as 21%, and a zoom settled it. Details are in [`checks.md`](checks.md) (15 checks), [`data/transcription/compare.md`](data/transcription/compare.md) and [`data/inspect.json`](data/inspect.json) (36 inspector checks).
+Every value was transcribed four times (two readings by eye from two different copies of the figure, an OCR pass, and a separate agent's transcription). The 75 values disagreed once: OCR read 91% as 21%, and a zoom settled it. Details are in [`checks.md`](checks.md) (15 checks), [`data/transcription/compare.md`](data/transcription/compare.md) and [`data/inspect.json`](data/inspect.json) (39 inspector checks).
 
 ## Files
 

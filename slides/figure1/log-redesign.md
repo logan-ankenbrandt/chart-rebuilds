@@ -10,14 +10,15 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 
 | What | Why |
 |---|---|
-| Replaced GAO's figure title with an action title: 'Agencies planned 79% of FY2025 IT spending, about $83 billion, for operations and maintenance'. | A slide read at a distance needs its finding in the title. The numbers and hedges are GAO's: 'about $83 billion (79 percent) in planned total IT spending for fiscal year 2025 was intended for operations and maintenance' (PDF p. 10, printed p. 4). |
+| Replaced GAO's figure title with an action title: 'Agencies planned 79% of FY2025 IT spending, about $83 billion, for operations and maintenance (O&M)'. | A slide read at a distance needs its finding in the title. The numbers and hedges are GAO's: 'about $83 billion (79 percent) in planned total IT spending for fiscal year 2025 was intended for operations and maintenance' (PDF p. 10, printed p. 4). |
+| Set the subtitle to the spread: 'Planned O&M share by agency ranged from 60% (Transportation) to 97% (Housing and Urban Development)'. | The title gives the all-agency 79%, and the 24 bars show how far agencies sit from it, which GAO also points out: the figure 'shows how agencies can vary in their percentage of operations and maintenance spending' (PDF p. 10). The subtitle states that spread from the lowest and highest rows of data/figure1.csv, and says 'planned' as GAO does. |
 | Sorted the 24 agencies by O&M share, highest first, in place of GAO's order by total spending. | The slide compares each agency with the overall share, and a sorted bar chart shows the spread and the extremes at a glance. Agencies with equal shares keep GAO's order, largest total first. |
 | Plotted one series, the O&M share, on a 0 to 100% axis that starts at zero. | Each agency's two shares add to 100, so the DME bar repeats the same information. One series drops half the ink and the legend, and the zero baseline keeps bar lengths true to the shares. |
 | Added a reference line at the all-agency share, labeled 'All 24 agencies: 79%'. | It turns each bar into a comparison with the total. The line sits at the exact share from the printed dollars, 82,828 / 105,136 = 78.78%, and carries GAO's rounded label. |
 | Labeled values only on the five extremes: Housing and Urban Development 97%, Small Business Administration 95%, Homeland Security 91%, Treasury 61% and Transportation 60%. | These five stand apart from the rest: the next share below 91% is 87%, and the next above 61% is 69%. The gridlines carry the other values, and every value stays in the faithful slide and data/figure1.csv. |
 | Shortened agency names, for example 'Defense' for 'Department of Defense', 'NASA' and 'USAID'. | Short names fit 24 rows beside the bars. The mapping is the redesign_label column of data/figure1.csv. |
 | Left out the dollar totals. | The slide carries one message, the share. The totals stay in the faithful slide and the CSV, and the notes column gives the overall $82,828 million of $105,136 million. |
-| Added a notes column: what the line is, the report's separate 'about 80 percent' statement, and GAO's legacy caveat. | These are the qualifiers a reader needs before repeating the number. Each one cites the report page it comes from. |
+| Added a notes column: what the line is, the report's separate 'about 80 percent' statement, and GAO's legacy caveat. | These are the qualifiers a reader needs before repeating the number. Each one cites the report page it comes from. The three notes are paragraphs of one text box at one fixed gap, starting level with the top of the plot. |
 | Colored the bars #2B5D96 and the line #D55E00 (vermilion). | The dataviz palette validator rated #2F5D8A below its chroma floor (OKLCH chroma 0.089, so it reads gray). #2B5D96, a slightly more saturated blue of about the same lightness, passes every check with #D55E00 (data/palette-check.txt). |
 
 ## Kept
@@ -25,9 +26,9 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | What | Why |
 |---|---|
 | GAO's numbers and hedges: 'planned', 'about $83 billion', 79%. | The title claims no more precision or certainty than the report. |
-| The definitions: operations and maintenance (O&M) spelled out in the subtitle, and the other 21% named as development, modernization and enhancement. | They come from the figure's legend and the report's footnote 11 (PDF p. 10). |
+| The definitions: operations and maintenance (O&M) spelled out in the title, and the other 21% named as development, modernization and enhancement. | They come from the figure's legend and the report's footnote 11 (PDF p. 10). |
 | The scope and source: the 24 CFO Act agencies, GAO-25-107795 Figure 1, GAO analysis of IT Dashboard data. | The scope is from PDF p. 10 and the source line from the figure. |
-| Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, chart text 11 to 12 pt, source and footer 10 pt. | The deck's type standard. Chart text sits below the 14 pt body size because of the 24 rows (see Rejected), and nothing is under 10 pt. |
+| Arial throughout, theme fonts included: title 28 pt, subtitle 16 pt, notes 14 pt, chart text 11 to 12 pt, source and footer 10 pt. | The deck's type standard. Chart text sits below the 14 pt body size because of the 24 rows (see Rejected), and nothing is under 10 pt. |
 
 ## Rejected
 
@@ -60,9 +61,9 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Sort and tie order | 4 tie groups, each in GAO's order (checks.md). |
 | Extremes | Highest: Housing and Urban Development 97%, Small Business Administration 95%, Homeland Security 91%. Lowest: Treasury 61%, Transportation 60%. Value labels appear on exactly those five (inspector). |
 | Reference line position | 78.81% of the axis in a 300 dpi render, against a target of 78.78% (data/reference-line.json). |
-| Numbers in the title and notes | 'about $83 billion' is $82,828M rounded, 79% is 78.78% rounded and 21% is 21.22% rounded, as GAO prints them (checks.md). |
+| Numbers in the title, subtitle and notes | 'about $83 billion' is $82,828M rounded, 79% is 78.78% rounded and 21% is 21.22% rounded, as GAO prints them (checks.md). The subtitle's 60% and 97% are the printed shares of Transportation and Housing and Urban Development (data/figure1.csv rows 6 and 18), the lowest and highest of the 24. |
 | Palette | The dataviz validator passes #2B5D96 with #D55E00 on the lightness band, chroma floor, colorblind separation (delta E 21.3), normal-vision floor and contrast (data/palette-check.txt). |
-| Inspector (python-pptx) on redesign.pptx | 16 of 16 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code. |
+| Inspector (python-pptx) on redesign.pptx | 17 of 17 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only (theme fonts too), footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code. |
 | Render review | All 24 names visible with no overlaps at 96 and 200 dpi. An earlier render that dropped every other name was fixed by setting the label interval to 1. |
 
 Portfolio reconstruction of a public GAO figure. Not a GAO product.

@@ -17,7 +17,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Set the two DME labels that sit outside their bars (Housing and Urban Development 3%, Small Business Administration 5%) as text boxes, and switched off the chart's own labels for those two points. | PowerPoint stores a moved data label as an offset from its default spot, and LibreOffice computes that spot differently, so a moved label would land in different places in the two programs. The inspector checks both text boxes against the CSV. |
 | Drew the axis rule, the numbers 0 to 100 and the axis title as a shape and text boxes in place of the chart's own axis. | A 100% stacked chart's axis prints 0% to 100%, and GAO prints the numbers without percent signs. GAO's rule also starts 18 px (300 ppi) below the last bar's fill, lower than a chart axis line sits. |
 | Placed each text element on its measured baseline, then moved it by the offset that best matched its ink to the source in a 300 dpi render, 1 to 5 px (under 1.2 pt). | LibreOffice sets baselines a little lower than the font-metric model used to place them. The offsets are the NUDGE table in src/build-faithful.js, and the result is in data/fit-offsets.json. |
-| Added a slide footer: the source line and 'Portfolio reconstruction of a public GAO figure. Not a GAO product.' | Every rebuilt slide carries it, so the slide cannot pass for a GAO product. |
+| Added a slide footer: the source line and 'Portfolio reconstruction of a public GAO figure. Not a GAO product.' | Every rebuilt slide carries it, so the slide cannot pass for a GAO product. It sits 0.28 in from the bottom edge, inside the redesign's 0.5 in margin, because the figure fills the slide height at its printed size and its source line ends at about 6.92 in. |
 
 ## Kept
 
@@ -26,7 +26,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | GAO's order (largest planned total first), all 24 names as printed, every dollar total and every percent label. | These are the figure's content. Each value was read in four passes and matches data/figure1.csv, and the inspector compares the chart, its embedded workbook and the table with that file. |
 | Colors from the figure's pixels: O&M #409993, DME #99CCFF, band gray #D7D7D7, black text and outlines. | The PDF holds the figure as an indexed-color image, so these are its exact palette values. |
 | GAO's type and lines: caption Arial Bold 9 pt, band heading 9 pt bold, $105,136 at 10 pt bold, totals 8 pt bold, names 7 pt bold, percent labels 7 pt, source line 6 pt, 0.5 pt outlines and a 1.9 pt axis rule. | Measured on the 300 ppi figure from cap heights and word widths, and from the PDF's text layer for the caption, where the word 'Figure' is 27.56 pt wide, the width of 9 pt Arial Bold. |
-| The caption, the legend's two definitions and the source line, word for word. | They carry the figure's title and its definitions of DME and O&M. |
+| The caption, the legend's two definitions (with GAO's bold '=' signs) and the source line, word for word. | They carry the figure's title and its definitions of DME and O&M. |
 
 ## Rejected
 
@@ -36,7 +36,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | A 25th chart category for the top band. | It would force the band to the agency bars' height and spacing. |
 | Tracing over a pasted copy of the source image, or keeping any picture on the slide. | Everything on the slide is a native, editable object. The inspector fails any slide that holds a picture, and its test proves that it does. |
 | Two tables with different row pitches, to follow GAO's dollar column exactly. | GAO's totals run on a slightly longer pitch than its bars. With one table on the bars' pitch, the row 1 total sits 3 px low and the row 24 total 4 px high at 300 ppi (about 1 pt), while names stay within 1 px. One table keeps the slide simple. |
-| Moving the chart's inside labels by hand to match GAO's padding. | LibreOffice places inside-end labels 3 to 5 px (300 ppi) closer to the segment end than GAO did. Hand-placed labels would stop following the data. |
+| Giving the chart's inside labels fixed offsets to match GAO's padding. | LibreOffice places inside-end labels 3 to 5 px (300 ppi) closer to the segment end than GAO did. Fixed-offset labels would stop following the data. |
 
 ## Flagged
 
@@ -57,7 +57,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Rounding of each agency's shares | All 24 rows add to 100. The rounded shares imply $82,847.15M of O&M against the printed $82,828M, inside the +/-$525.68M that whole-percent rounding allows. |
 | Bar lengths against their labels | All 24 bars measure within 0.07 points of their printed percents at 300 ppi (checks.md). |
 | Order | Totals strictly decrease down the figure. The closest pairs, Energy with Agriculture and USAID with EPA, are each $1M apart. |
-| Inspector (python-pptx) on faithful.pptx | 20 of 20 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails. |
-| Overlay on the published figure | RMSE 0.1425 on the figure at 300 dpi (the source image at its native resolution), 0.1387 at 96 dpi and 0.0908 for the whole slide, where 0 means identical. Bar outlines and dividers land within 1 px at 300 ppi. |
+| Inspector (python-pptx) on faithful.pptx | 22 of 22 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV with a frame as tall as its 24 rows, outside labels, no pictures, Arial only (theme fonts too), footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails. |
+| Overlay on the published figure | RMSE 0.1427 on the figure at 300 dpi (the source image at its native resolution), 0.1388 at 96 dpi and 0.0908 for the whole slide, where 0 means identical. Bar outlines and dividers land within 1 px at 300 ppi. |
 
 Portfolio reconstruction of a public GAO figure. Not a GAO product.
