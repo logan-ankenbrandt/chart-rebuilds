@@ -105,7 +105,8 @@ slide.addTable(
     { text: dollars(a.total), options: { bold: true, fontSize: 8, align: 'right' } },
   ]),
   {
-    x: X(8 + N('table', 0)), y: Y(PLOT_TOP + TABLE_SHIFT + N('table', 1)), w: L(813 - 8), colW: [L(680 - 8), L(813 - 680)],
+    // h: without it the table's frame records 1 in, not the 24 rows' height.
+    x: X(8 + N('table', 0)), y: Y(PLOT_TOP + TABLE_SHIFT + N('table', 1)), w: L(813 - 8), h: L(24 * PITCH), colW: [L(680 - 8), L(813 - 680)],
     rowH: agencies.map(() => L(PITCH)), margin: 0, valign: 'middle', fontFace: 'Arial', color: INK,
     border: { type: 'none' }, fill: { color: 'FFFFFF', transparency: 100 },
   },
@@ -149,13 +150,16 @@ text('Percent of DME and O&M spending', { x: X(835.8 + N('axisTitle', 0)), y: to
 
 // Legend and source line.
 rect(8, 1771, 107.8, 1819, DME, true);
-text('DME = development, modernization, and enhancement', { x: X(131.8 + N('legend', 0)), y: topForBaseline(1802 + N('legend', 1), 7), w: L(730), h: L(32), fontSize: 7 });
+// The figure sets each legend's '=' in bold and the rest in regular weight.
+const legend = (key, rest) => [{ text: `${key} ` }, { text: '=', options: { bold: true } }, { text: ` ${rest}` }];
+text(legend('DME', 'development, modernization, and enhancement'), { x: X(131.8 + N('legend', 0)), y: topForBaseline(1802 + N('legend', 1), 7), w: L(730), h: L(32), fontSize: 7 });
 rect(872, 1771, 971.8, 1819, OM, true);
-text('O&M = operations and maintenance', { x: X(997.6 + N('legend', 0)), y: topForBaseline(1802 + N('legend', 1), 7), w: L(490), h: L(32), fontSize: 7 });
+text(legend('O&M', 'operations and maintenance'), { x: X(997.6 + N('legend', 0)), y: topForBaseline(1802 + N('legend', 1), 7), w: L(490), h: L(32), fontSize: 7 });
 text('Source: GAO analysis of IT Dashboard data.  |  GAO-25-107795', { x: X(3.8 + N('sourceLine', 0)), y: topForBaseline(1870 + N('sourceLine', 1), 6), w: L(760), h: L(28), fontSize: 6 });
 
-// Slide footer, outside the figure.
-const FOOT = { y: 7.12, h: 0.25, fontSize: 10, color: '595959', valign: 'top' };
+// Slide footer, outside the figure. The figure fills the slide height at its printed size (its source line ends
+// near y 6.92 in), so the footer takes the next 0.3 in and leaves a 0.28 in bottom margin, not the redesign's 0.5 in.
+const FOOT = { y: 7.0, h: 0.22, fontSize: 10, color: '595959', valign: 'top' };
 text('Source: GAO-25-107795, Figure 1, printed page 5 (July 2025). Rebuilt as a native PowerPoint chart with embedded data.',
   { x: 0.5, w: 7.6, ...FOOT });
 text('Portfolio reconstruction of a public GAO figure. Not a GAO product.', { x: 8.3, w: 4.533, align: 'right', ...FOOT });
