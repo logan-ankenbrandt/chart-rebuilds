@@ -1,4 +1,4 @@
-# Chart Rebuilds: GAO's federal IT spending chart
+# Chart rebuilds: GAO’s federal IT spending chart
 
 GAO report GAO-25-107795 (July 2025) has a dense figure: planned fiscal year 2025 IT spending for the 24 CFO Act agencies, drawn as 24 bars of operations and maintenance (O&M) against development, modernization and enhancement (DME), with every value printed. This repo rebuilds that figure in PowerPoint twice. The first slide is a faithful rebuild as a native, editable chart. The second is an executive slide built around the figure's one finding.
 

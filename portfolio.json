@@ -1,6 +1,6 @@
 {
   "slug": "chart-rebuilds",
-  "title": "Chart Rebuilds: GAO's federal IT spending chart",
+  "title": "Chart rebuilds: GAO’s federal IT spending chart",
   "oneLiner": "A dense GAO chart, 24 agencies with every value printed, rebuilt as a native PowerPoint chart, checked against its own printed totals, then redesigned around its one finding.",
   "repo": "https://github.com/logan-ankenbrandt/chart-rebuilds",
   "order": 3,
