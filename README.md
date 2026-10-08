@@ -4,7 +4,7 @@ GAO report GAO-25-107795 (July 2025) has a dense figure: planned fiscal year 202
 
 ![The redesign: agencies planned 79% of FY2025 IT spending, about $83 billion, for operations and maintenance](renders/cover.png)
 
-How this was made: Claude Code agents rebuilt this GAO figure from the source image as editable PowerPoint and drafted the logs. I chose the source, set the rules each rebuild follows, and checked every slide, number and log before publishing.
+How this was made: Claude Code agents rebuilt this GAO figure from the source image as editable PowerPoint and drafted the logs. I approved the source and the rules each rebuild follows, and checked every slide, number and log before publishing.
 
 ## The two slides
 

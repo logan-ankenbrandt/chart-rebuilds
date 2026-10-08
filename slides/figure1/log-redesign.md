@@ -4,7 +4,7 @@ Slide log for item `figure1-redesign` (chart-redesign). Source: GAO-25-107795, "
 
 Sorted by operations and maintenance share, with a line at the all-agency 79%, labels on the five extremes, and an action title in GAO's own numbers. Notes keep the report's general 'about 80 percent' and its legacy caveat apart from the FY2025 figure.
 
-How this was made: Claude Code agents rebuilt this GAO figure from the source image as editable PowerPoint and drafted the logs. I chose the source, set the rules each rebuild follows, and checked every slide, number and log before publishing.
+How this was made: Claude Code agents rebuilt this GAO figure from the source image as editable PowerPoint and drafted the logs. I approved the source and the rules each rebuild follows, and checked every slide, number and log before publishing.
 
 ## Changed
 

@@ -37,7 +37,7 @@ bar_px = max(max(abs(b["dx"]), abs(b["dy"])) for b in bar_fit)
 fix = cmp_["resolved"][0]
 
 HOW_MADE = ("Claude Code agents rebuilt this GAO figure from the source image as editable PowerPoint and drafted the logs. "
-            "I chose the source, set the rules each rebuild follows, and checked every slide, number and log before publishing.")
+            "I approved the source and the rules each rebuild follows, and checked every slide, number and log before publishing.")
 SOURCE = {
     "image": "slides/figure1/source.png",
     "title": "Figure 1: Planned IT Spending, as Reported on the IT Dashboard for Fiscal Year 2025, in millions of dollars",

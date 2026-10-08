@@ -4,7 +4,7 @@ Slide log for item `figure1-faithful` (chart-faithful). Source: GAO-25-107795, "
 
 GAO's figure of planned FY2025 IT spending for 24 agencies, rebuilt on a 16:9 slide as one native 100% stacked bar chart with the 48 printed percents embedded and a table for names and totals. Laid over the published figure, its bar outlines land within 1 px at 300 ppi.
 
-How this was made: Claude Code agents rebuilt this GAO figure from the source image as editable PowerPoint and drafted the logs. I chose the source, set the rules each rebuild follows, and checked every slide, number and log before publishing.
+How this was made: Claude Code agents rebuilt this GAO figure from the source image as editable PowerPoint and drafted the logs. I approved the source and the rules each rebuild follows, and checked every slide, number and log before publishing.
 
 ## Changed
 
