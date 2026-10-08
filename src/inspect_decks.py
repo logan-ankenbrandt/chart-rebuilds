@@ -2,10 +2,10 @@
 
 For each deck it checks that the slide has exactly one native chart of the expected type with an embedded
 workbook, that the chart's cached values AND the embedded workbook's cells match the CSV, that the slide
-holds no picture (so nothing is a pasted screenshot), that every font is Arial, that every shape sits on
+holds no picture (so nothing is a pasted screenshot), that every font and both theme fonts are Arial, that every shape sits on
 the slide, that the footer is present, that no text carries a dash character or a banned word, and that the
 file's properties name PptxGenJS and Claude Code instead of claiming PowerPoint.
-The faithful deck's table and outside labels are checked against the CSV too.
+The faithful deck's table (values and frame height) and outside labels are checked against the CSV too.
 
 Usage: python3 src/inspect_decks.py [deck-folder]   (exits non-zero on any failure; writes data/inspect.json
 for the repo's own decks only)
@@ -114,6 +114,12 @@ def inspect(deck: Path, expected_type, categories: list[str], series: dict[str, 
                       if re.match(r"ppt/(slides/slide\d+|charts/chart\d+)\.xml$", n))
     faces = set(re.findall(r'<a:latin typeface="([^"]+)"', xml))
     check("only Arial", faces == {"Arial"}, ", ".join(sorted(faces)))
+    # The theme fonts are what PowerPoint gives any text a reviewer adds, so they must be Arial too.
+    with zipfile.ZipFile(deck) as z:
+        theme = z.read("ppt/theme/theme1.xml").decode("utf-8")
+    theme_faces = re.findall(r'<a:(major|minor)Font><a:latin typeface="([^"]+)"', theme)
+    check("theme fonts are Arial", [f for _, f in theme_faces] == ["Arial", "Arial"],
+          ", ".join(f"{k} {f}" for k, f in theme_faces))
 
     with zipfile.ZipFile(deck) as z:
         app_name = re.search(r"<Application>([^<]*)</Application>", z.read("docProps/app.xml").decode("utf-8"))
@@ -141,6 +147,11 @@ def main() -> int:
     tables = [s for s in slide.shapes if s.has_table]
     table_rows = [[c.text for c in row.cells] for row in tables[0].table.rows] if tables else []
     want_rows = [[r["agency"], f"${int(r['total_musd']):,}"] for r in rows]
+    if tables:
+        frame_h, rows_h = tables[0].height, sum(row.height for row in tables[0].table.rows)
+        results.append({"deck": "faithful.pptx", "check": "table frame height equals its rows' height",
+                        "ok": abs(frame_h - rows_h) <= 0.01 * rows_h,
+                        "detail": f"frame {frame_h / 914400:.3f} in, rows {rows_h / 914400:.3f} in"})
     results.append({"deck": "faithful.pptx", "check": "table names and totals match the CSV", "ok": table_rows == want_rows,
                     "detail": f"{len(table_rows)} rows x 2 columns"})
     outside = {r["agency"]: f"{r['dme_pct']}%" for r in rows

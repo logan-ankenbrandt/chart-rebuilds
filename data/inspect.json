@@ -1,6 +1,6 @@
 {
-  "passed": 36,
-  "total": 36,
+  "passed": 39,
+  "total": 39,
   "results": [
     {
       "deck": "faithful.pptx",
@@ -88,6 +88,12 @@
     },
     {
       "deck": "faithful.pptx",
+      "check": "theme fonts are Arial",
+      "ok": true,
+      "detail": "major Arial, minor Arial"
+    },
+    {
+      "deck": "faithful.pptx",
       "check": "file properties say how the deck was made",
       "ok": true,
       "detail": "application 'PptxGenJS 4.0.1', last modified by 'Claude Code (PptxGenJS 4.0.1)'"
@@ -103,6 +109,12 @@
       "check": "no dash characters or banned words in slide text and notes",
       "ok": true,
       "detail": "none"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "table frame height equals its rows' height",
+      "ok": true,
+      "detail": "frame 4.849 in, rows 4.849 in"
     },
     {
       "deck": "faithful.pptx",
@@ -193,6 +205,12 @@
       "check": "only Arial",
       "ok": true,
       "detail": "Arial"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "theme fonts are Arial",
+      "ok": true,
+      "detail": "major Arial, minor Arial"
     },
     {
       "deck": "redesign.pptx",

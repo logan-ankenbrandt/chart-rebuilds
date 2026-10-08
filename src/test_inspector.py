@@ -4,8 +4,9 @@ Cases:
   1. one charted value changed in the chart cache (HUD O&M 97 -> 96), workbook left alone
   2. a picture pasted onto the faithful slide
   3. value labels switched on for every bar of the redesign
-  4. an en dash pasted into the redesign's subtitle
+  4. an en dash pasted into the redesign's title
   5. file properties that claim the deck came from Microsoft Office PowerPoint
+  6. the theme's body font set back to Calibri on the redesign
 Each broken folder must make src/inspect_decks.py exit non-zero and name the expected check as FAIL.
 The untouched decks must pass.
 
@@ -86,7 +87,7 @@ def main() -> int:
     d = copy_case("dash-in-text")
     dash = chr(0x2013)
     rewrite_part(d / "redesign.pptx", "ppt/slides/slide1.xml",
-                 lambda xml: xml.replace("operations and maintenance (O&amp;M)", f"operations {dash} maintenance (O&amp;M)", 1))
+                 lambda xml: xml.replace("for operations and maintenance", f"for operations {dash} maintenance", 1))
     code, out = run(d)
     if code == 0 or "FAIL  redesign.pptx  no dash characters or banned words" not in out:
         failures.append("a dash in slide text was not caught")
@@ -98,9 +99,16 @@ def main() -> int:
     if code == 0 or "FAIL  faithful.pptx  file properties say how the deck was made" not in out:
         failures.append("properties claiming PowerPoint were not caught")
 
+    d = copy_case("calibri-theme")
+    rewrite_part(d / "redesign.pptx", "ppt/theme/theme1.xml",
+                 lambda xml: xml.replace('<a:minorFont><a:latin typeface="Arial"', '<a:minorFont><a:latin typeface="Calibri"', 1))
+    code, out = run(d)
+    if code == 0 or "FAIL  redesign.pptx  theme fonts are Arial" not in out:
+        failures.append("a Calibri theme font was not caught")
+
     for f in failures:
         print("TEST FAILED:", f)
-    print("inspector tests:", "all 6 behave as expected" if not failures else f"{len(failures)} problem(s)")
+    print("inspector tests:", "all 7 behave as expected" if not failures else f"{len(failures)} problem(s)")
     return 1 if failures else 0
 
 
