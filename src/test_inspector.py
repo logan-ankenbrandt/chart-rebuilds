@@ -5,6 +5,7 @@ Cases:
   2. a picture pasted onto the faithful slide
   3. value labels switched on for every bar of the redesign
   4. an en dash pasted into the redesign's subtitle
+  5. file properties that claim the deck came from Microsoft Office PowerPoint
 Each broken folder must make src/inspect_decks.py exit non-zero and name the expected check as FAIL.
 The untouched decks must pass.
 
@@ -90,9 +91,16 @@ def main() -> int:
     if code == 0 or "FAIL  redesign.pptx  no dash characters or banned words" not in out:
         failures.append("a dash in slide text was not caught")
 
+    d = copy_case("claims-powerpoint")
+    rewrite_part(d / "faithful.pptx", "docProps/app.xml",
+                 lambda xml: re.sub(r"<Application>[^<]*</Application>", "<Application>Microsoft Office PowerPoint</Application>", xml))
+    code, out = run(d)
+    if code == 0 or "FAIL  faithful.pptx  file properties say how the deck was made" not in out:
+        failures.append("properties claiming PowerPoint were not caught")
+
     for f in failures:
         print("TEST FAILED:", f)
-    print("inspector tests:", "all 5 behave as expected" if not failures else f"{len(failures)} problem(s)")
+    print("inspector tests:", "all 6 behave as expected" if not failures else f"{len(failures)} problem(s)")
     return 1 if failures else 0
 
 

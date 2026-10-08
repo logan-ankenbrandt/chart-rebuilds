@@ -3,7 +3,8 @@
 For each deck it checks that the slide has exactly one native chart of the expected type with an embedded
 workbook, that the chart's cached values AND the embedded workbook's cells match the CSV, that the slide
 holds no picture (so nothing is a pasted screenshot), that every font is Arial, that every shape sits on
-the slide, that the footer is present, and that no text carries a dash character or a banned word.
+the slide, that the footer is present, that no text carries a dash character or a banned word, and that the
+file's properties name PptxGenJS and Claude Code instead of claiming PowerPoint.
 The faithful deck's table and outside labels are checked against the CSV too.
 
 Usage: python3 src/inspect_decks.py [deck-folder]   (exits non-zero on any failure; writes data/inspect.json
@@ -113,6 +114,14 @@ def inspect(deck: Path, expected_type, categories: list[str], series: dict[str, 
                       if re.match(r"ppt/(slides/slide\d+|charts/chart\d+)\.xml$", n))
     faces = set(re.findall(r'<a:latin typeface="([^"]+)"', xml))
     check("only Arial", faces == {"Arial"}, ", ".join(sorted(faces)))
+
+    with zipfile.ZipFile(deck) as z:
+        app_name = re.search(r"<Application>([^<]*)</Application>", z.read("docProps/app.xml").decode("utf-8"))
+    cp = prs.core_properties
+    honest = (app_name is not None and "PptxGenJS" in app_name.group(1)
+              and "Claude Code agents" in (cp.comments or "") and "Claude Code" in (cp.last_modified_by or ""))
+    check("file properties say how the deck was made", honest,
+          f"application '{app_name.group(1) if app_name else None}', last modified by '{cp.last_modified_by}'")
 
     texts = all_text(slide)
     check("footer present", any(FOOTER in t for t in texts), FOOTER)

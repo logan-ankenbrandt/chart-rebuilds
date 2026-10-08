@@ -1,6 +1,6 @@
 {
-  "passed": 34,
-  "total": 34,
+  "passed": 36,
+  "total": 36,
   "results": [
     {
       "deck": "faithful.pptx",
@@ -85,6 +85,12 @@
       "check": "only Arial",
       "ok": true,
       "detail": "Arial"
+    },
+    {
+      "deck": "faithful.pptx",
+      "check": "file properties say how the deck was made",
+      "ok": true,
+      "detail": "application 'PptxGenJS 4.0.1', last modified by 'Claude Code (PptxGenJS 4.0.1)'"
     },
     {
       "deck": "faithful.pptx",
@@ -187,6 +193,12 @@
       "check": "only Arial",
       "ok": true,
       "detail": "Arial"
+    },
+    {
+      "deck": "redesign.pptx",
+      "check": "file properties say how the deck was made",
+      "ok": true,
+      "detail": "application 'PptxGenJS 4.0.1', last modified by 'Claude Code (PptxGenJS 4.0.1)'"
     },
     {
       "deck": "redesign.pptx",
