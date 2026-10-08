@@ -36,10 +36,11 @@ slide.background = { color: C.bg };
 const text = (t, o) => slide.addText(t, { fontFace: FONT, color: C.ink, margin: 0, valign: 'top', ...o });
 
 // Action title and subtitle, 0.5 in margins.
-text('Agencies planned 79% of FY2025 IT spending, about $83 billion, for operations and maintenance', {
+text('Agencies planned 79% of FY2025 IT spending, about $83 billion, for operations and maintenance (O&M)', {
   x: 0.5, y: 0.4, w: 12.333, h: 0.92, fontSize: 28, bold: true,
 });
-text("Share of each agency's planned FY2025 IT spending that goes to operations and maintenance (O&M)", {
+// The subtitle carries the spread the 24 bars show (data/figure1.csv: Transportation 60, HUD 97).
+text(`Planned O&M share by agency ranged from ${ranked[23].om}% (${ranked[23].label}) to ${ranked[0].om}% (${ranked[0].label})`, {
   x: 0.5, y: 1.42, w: 12.333, h: 0.3, fontSize: 16, color: C.ink2,
 });
 
@@ -70,17 +71,18 @@ slide.addShape(pptx.ShapeType.line, { x: lineX, y: P.top - 0.06, w: 0, h: P.bott
 text('All 24 agencies: 79%', { x: lineX - 1.2, y: P.top - 0.31, w: 2.4, h: 0.24, fontSize: 12, bold: true, align: 'center' });
 
 // Notes column: what the line is, the separate "about 80 percent" statement, and GAO's legacy caveat.
-const NOTE = { x: 9.55, w: 3.283, fontSize: 14, color: C.ink2 };
-text(`79% is all 24 agencies combined: $${band.omUsd.toLocaleString('en-US')} million of $${band.total.toLocaleString('en-US')} million (${overall.toFixed(1)}%). The other ${band.dme}% is for development, modernization and enhancement.`,
-  { ...NOTE, y: P.top, h: 1.35 });
-text('GAO\'s report (page 1) also says agencies have typically reported spending about 80 percent on O&M. That general statement is separate from these FY2025 plans.',
-  { ...NOTE, y: 3.65, h: 1.6 });
-text('GAO notes it is uncertain how much O&M spending goes to legacy technology (report page 4).',
-  { ...NOTE, y: 5.35, h: 0.75 });
+// One text box from the plot's top to its bottom, three paragraphs at one fixed gap.
+const notes = [
+  `79% is all 24 agencies combined: $${band.omUsd.toLocaleString('en-US')} million of $${band.total.toLocaleString('en-US')} million (${overall.toFixed(1)}%). The other ${band.dme}% is for development, modernization and enhancement.`,
+  'GAO\'s report (page 1) also says agencies have typically reported spending about 80 percent on O&M. That general statement is separate from these FY2025 plans.',
+  'GAO notes it is uncertain how much O&M spending goes to legacy technology (report page 4).',
+];
+text(notes.map((t, i) => ({ text: t, options: { breakLine: i < notes.length - 1, paraSpaceBefore: i ? 24 : 0 } })),
+  { x: 9.55, y: P.top, w: 3.283, h: P.bottom - P.top, fontSize: 14, color: C.ink2 });
 
 // Source line and footer.
 const FOOT = { y: 6.78, h: 0.22, fontSize: 10, color: C.muted };
-text('Source: GAO-25-107795, Figure 1 (July 2025); GAO analysis of IT Dashboard data, 24 CFO Act agencies.', { x: 0.5, w: 7.4, ...FOOT });
+text('Source: GAO-25-107795, Figure 1 (July 2025). GAO analysis of IT Dashboard data for the 24 CFO Act agencies.', { x: 0.5, w: 7.4, ...FOOT });
 text('Portfolio reconstruction of a public GAO figure. Not a GAO product.', { x: 8.1, w: 4.733, align: 'right', ...FOOT });
 
 slide.addNotes([
