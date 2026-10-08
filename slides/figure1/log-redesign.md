@@ -18,7 +18,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Shortened agency names, for example 'Defense' for 'Department of Defense', 'NASA' and 'USAID'. | Short names fit 24 rows beside the bars. The mapping is the redesign_label column of data/figure1.csv. |
 | Left out the dollar totals. | The slide carries one message, the share. The totals stay in the faithful slide and the CSV, and the notes column gives the overall $82,828 million of $105,136 million. |
 | Added a notes column: what the line is, the report's separate 'about 80 percent' statement, and GAO's legacy caveat. | These are the qualifiers a reader needs before repeating the number. Each one cites the report page it comes from. |
-| Colored the bars #2B5D96 and the line #D55E00 (vermilion). | The dataviz palette validator rated #2F5D8A below its chroma floor (OKLCH chroma 0.089, so it reads gray). #2B5D96 is the nearest blue that passes every check with #D55E00 (data/palette-check.txt). |
+| Colored the bars #2B5D96 and the line #D55E00 (vermilion). | The dataviz palette validator rated #2F5D8A below its chroma floor (OKLCH chroma 0.089, so it reads gray). #2B5D96, a slightly more saturated blue of about the same lightness, passes every check with #D55E00 (data/palette-check.txt). |
 
 ## Kept
 
@@ -27,7 +27,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | GAO's numbers and hedges: 'planned', 'about $83 billion', 79%. | The title claims no more precision or certainty than the report. |
 | The definitions: operations and maintenance (O&M) spelled out in the subtitle, and the other 21% named as development, modernization and enhancement. | They come from the figure's legend and the report's footnote 11 (PDF p. 10). |
 | The scope and source: the 24 CFO Act agencies, GAO-25-107795 Figure 1, GAO analysis of IT Dashboard data. | The scope is from PDF p. 10 and the source line from the figure. |
-| Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, axis numbers 11 pt, source and footer 10 pt. | The deck's type standard, with one exception for the agency names (see Rejected). |
+| Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, chart text 11 to 12 pt, source and footer 10 pt. | The deck's type standard. Chart text sits below the 14 pt body size because of the 24 rows (see Rejected), and nothing is under 10 pt. |
 
 ## Rejected
 
@@ -50,7 +50,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | The reference line is a drawn shape, not part of the chart data. | It sits at 78.78% of the plot width and measured 78.81% in a 300 dpi render (data/reference-line.json). It does not move if the chart data change, and the speaker notes say so. |
 | Ties are ordered by total spending because the source cannot rank them. | Four groups share a printed share: 87% (Veterans Affairs, NASA), 83% (Defense, Interior, Nuclear Regulatory Commission), 79% (Justice, Education) and 72% (General Services Administration, USAID). GAO drew the bars from rounded percents (checks.md). |
 | The published PDF and PNG use Liberation Sans where the .pptx names Arial. | pdffonts lists only LiberationSans and LiberationSans-Bold in both PDFs. LibreOffice substitutes this metric-compatible font, so widths and line breaks hold and glyph shapes differ slightly. |
-| No step in this build opened the file in Microsoft PowerPoint. | The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2, and File > Info in PowerPoint will name PptxGenJS. Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked. |
+| No step in this build opened the file in Microsoft PowerPoint. | The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name PptxGenJS 4.0.1 as the application and say Claude Code agents generated it (the inspector checks this). Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked. |
 
 ## Checks
 
@@ -62,7 +62,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Reference line position | 78.81% of the axis in a 300 dpi render, against a target of 78.78% (data/reference-line.json). |
 | Numbers in the title and notes | 'about $83 billion' is $82,828M rounded, 79% is 78.78% rounded and 21% is 21.22% rounded, as GAO prints them (checks.md). |
 | Palette | The dataviz validator passes #2B5D96 with #D55E00 on the lightness band, chroma floor, colorblind separation (delta E 21.3), normal-vision floor and contrast (data/palette-check.txt). |
-| Inspector (python-pptx) on redesign.pptx | 15 of 15 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words. |
-| Render review | All 24 names visible with no overlaps at 96 and 200 dpi, after a render where LibreOffice dropped every other name was fixed. |
+| Inspector (python-pptx) on redesign.pptx | 16 of 16 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code. |
+| Render review | All 24 names visible with no overlaps at 96 and 200 dpi. An earlier render that dropped every other name was fixed by setting the label interval to 1. |
 
 Portfolio reconstruction of a public GAO figure. Not a GAO product.

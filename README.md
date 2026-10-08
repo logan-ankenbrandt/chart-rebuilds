@@ -33,7 +33,7 @@ GAO drew every bar from its rounded whole percent: all 24 bars measure within 0.
 
 The report also says agencies "have typically reported spending about 80 percent" on O&M. That is a general statement. Both slides use the FY2025 figure, and the redesign's notes keep the two apart, along with GAO's caveat that it is uncertain how much O&M spending goes to legacy technology.
 
-Every value was transcribed four times (two readings by eye from two different copies of the figure, an OCR pass, and a separate agent's transcription). The 75 values disagreed once: OCR read 91% as 21%, and a zoom settled it. Details are in [`checks.md`](checks.md) (15 checks), [`data/transcription/compare.md`](data/transcription/compare.md) and [`data/inspect.json`](data/inspect.json) (34 inspector checks).
+Every value was transcribed four times (two readings by eye from two different copies of the figure, an OCR pass, and a separate agent's transcription). The 75 values disagreed once: OCR read 91% as 21%, and a zoom settled it. Details are in [`checks.md`](checks.md) (15 checks), [`data/transcription/compare.md`](data/transcription/compare.md) and [`data/inspect.json`](data/inspect.json) (36 inspector checks).
 
 ## Files
 
@@ -99,7 +99,7 @@ node src/validate_portfolio.mjs
 
 ## Limits
 
-No step in this build opened the decks in Microsoft PowerPoint. They were generated with PptxGenJS, checked with python-pptx, and rendered with LibreOffice, so PowerPoint's File > Info names PptxGenJS, and text positions in PowerPoint are unchecked.
+No step in this build opened the decks in Microsoft PowerPoint. They were generated with PptxGenJS, checked with python-pptx, and rendered with LibreOffice, so text positions in PowerPoint are unchecked. Each file's properties name PptxGenJS as the application and say Claude Code agents generated it.
 
 The PDFs and PNGs use Liberation Sans, which LibreOffice substitutes for Arial. Widths and line breaks match, and glyph shapes differ slightly.
 

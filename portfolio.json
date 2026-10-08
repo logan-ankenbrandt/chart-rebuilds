@@ -129,7 +129,7 @@
           },
           {
             "what": "No step in this build opened the file in Microsoft PowerPoint.",
-            "evidence": "The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2, and File > Info in PowerPoint will name PptxGenJS. Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked."
+            "evidence": "The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name PptxGenJS 4.0.1 as the application and say Claude Code agents generated it (the inspector checks this). Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked."
           }
         ],
         "checks": [
@@ -159,7 +159,7 @@
           },
           {
             "what": "Inspector (python-pptx) on faithful.pptx",
-            "result": "19 of 19 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present. A test builds broken decks and each one fails."
+            "result": "20 of 20 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails."
           },
           {
             "what": "Overlay on the published figure",
@@ -225,7 +225,7 @@
           },
           {
             "what": "Colored the bars #2B5D96 and the line #D55E00 (vermilion).",
-            "why": "The dataviz palette validator rated #2F5D8A below its chroma floor (OKLCH chroma 0.089, so it reads gray). #2B5D96 is the nearest blue that passes every check with #D55E00 (data/palette-check.txt)."
+            "why": "The dataviz palette validator rated #2F5D8A below its chroma floor (OKLCH chroma 0.089, so it reads gray). #2B5D96, a slightly more saturated blue of about the same lightness, passes every check with #D55E00 (data/palette-check.txt)."
           }
         ],
         "kept": [
@@ -242,8 +242,8 @@
             "why": "The scope is from PDF p. 10 and the source line from the figure."
           },
           {
-            "what": "Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, axis numbers 11 pt, source and footer 10 pt.",
-            "why": "The deck's type standard, with one exception for the agency names (see Rejected)."
+            "what": "Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, chart text 11 to 12 pt, source and footer 10 pt.",
+            "why": "The deck's type standard. Chart text sits below the 14 pt body size because of the 24 rows (see Rejected), and nothing is under 10 pt."
           }
         ],
         "rejected": [
@@ -299,7 +299,7 @@
           },
           {
             "what": "No step in this build opened the file in Microsoft PowerPoint.",
-            "evidence": "The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2, and File > Info in PowerPoint will name PptxGenJS. Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked."
+            "evidence": "The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name PptxGenJS 4.0.1 as the application and say Claude Code agents generated it (the inspector checks this). Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked."
           }
         ],
         "checks": [
@@ -329,11 +329,11 @@
           },
           {
             "what": "Inspector (python-pptx) on redesign.pptx",
-            "result": "15 of 15 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words."
+            "result": "16 of 16 checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code."
           },
           {
             "what": "Render review",
-            "result": "All 24 names visible with no overlaps at 96 and 200 dpi, after a render where LibreOffice dropped every other name was fixed."
+            "result": "All 24 names visible with no overlaps at 96 and 200 dpi. An earlier render that dropped every other name was fixed by setting the label interval to 1."
           }
         ]
       },
@@ -344,7 +344,7 @@
     {
       "label": "Faithful rebuild (PowerPoint)",
       "path": "slides/figure1/faithful.pptx",
-      "bytes": 25548
+      "bytes": 25647
     },
     {
       "label": "Faithful rebuild (PDF)",
@@ -354,7 +354,7 @@
     {
       "label": "Redesign (PowerPoint)",
       "path": "slides/figure1/redesign.pptx",
-      "bytes": 23083
+      "bytes": 23183
     },
     {
       "label": "Redesign (PDF)",

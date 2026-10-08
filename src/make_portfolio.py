@@ -48,9 +48,10 @@ SOURCE = {
 }
 NOT_POWERPOINT = {
     "what": "No step in this build opened the file in Microsoft PowerPoint.",
-    "evidence": "The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2, and File > Info in PowerPoint "
-                "will name PptxGenJS. Renders, the overlay and every position calibration come from LibreOffice, so text "
-                "positions in PowerPoint are unchecked.",
+    "evidence": "The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name "
+                "PptxGenJS 4.0.1 as the application and say Claude Code agents generated it (the inspector checks this). "
+                "Renders, the overlay and every position calibration come from LibreOffice, so text positions in "
+                "PowerPoint are unchecked.",
 }
 FONTS = {
     "what": "The published PDF and PNG use Liberation Sans where the .pptx names Arial.",
@@ -121,7 +122,7 @@ FAITHFUL_LOG = {
         {"what": "Order",
          "result": "Totals strictly decrease down the figure. The closest pairs, Energy with Agriculture and USAID with EPA, are each $1M apart."},
         {"what": "Inspector (python-pptx) on faithful.pptx",
-         "result": f"{passed(f_ins)} of {len(f_ins)} checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present. A test builds broken decks and each one fails."},
+         "result": f"{passed(f_ins)} of {len(f_ins)} checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails."},
         {"what": "Overlay on the published figure",
          "result": f"RMSE {ovl['rmse_figure_300dpi']} on the figure at 300 dpi (the source image at its native resolution), {ovl['rmse_figure_96dpi']} at 96 dpi and {ovl['rmse_slide_96dpi']} for the whole slide, where 0 means identical. Bar outlines and dividers land within {bar_px} px at 300 ppi."},
     ],
@@ -146,7 +147,7 @@ REDESIGN_LOG = {
         {"what": "Added a notes column: what the line is, the report's separate 'about 80 percent' statement, and GAO's legacy caveat.",
          "why": "These are the qualifiers a reader needs before repeating the number. Each one cites the report page it comes from."},
         {"what": "Colored the bars #2B5D96 and the line #D55E00 (vermilion).",
-         "why": "The dataviz palette validator rated #2F5D8A below its chroma floor (OKLCH chroma 0.089, so it reads gray). #2B5D96 is the nearest blue that passes every check with #D55E00 (data/palette-check.txt)."},
+         "why": "The dataviz palette validator rated #2F5D8A below its chroma floor (OKLCH chroma 0.089, so it reads gray). #2B5D96, a slightly more saturated blue of about the same lightness, passes every check with #D55E00 (data/palette-check.txt)."},
     ],
     "kept": [
         {"what": "GAO's numbers and hedges: 'planned', 'about $83 billion', 79%.",
@@ -155,8 +156,8 @@ REDESIGN_LOG = {
          "why": "They come from the figure's legend and the report's footnote 11 (PDF p. 10)."},
         {"what": "The scope and source: the 24 CFO Act agencies, GAO-25-107795 Figure 1, GAO analysis of IT Dashboard data.",
          "why": "The scope is from PDF p. 10 and the source line from the figure."},
-        {"what": "Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, axis numbers 11 pt, source and footer 10 pt.",
-         "why": "The deck's type standard, with one exception for the agency names (see Rejected)."},
+        {"what": "Arial throughout: title 28 pt, subtitle 16 pt, notes 14 pt, chart text 11 to 12 pt, source and footer 10 pt.",
+         "why": "The deck's type standard. Chart text sits below the 14 pt body size because of the 24 rows (see Rejected), and nothing is under 10 pt."},
     ],
     "rejected": [
         {"what": "A dot plot.",
@@ -200,9 +201,9 @@ REDESIGN_LOG = {
         {"what": "Palette",
          "result": "The dataviz validator passes #2B5D96 with #D55E00 on the lightness band, chroma floor, colorblind separation (delta E 21.3), normal-vision floor and contrast (data/palette-check.txt)."},
         {"what": "Inspector (python-pptx) on redesign.pptx",
-         "result": f"{passed(r_ins)} of {len(r_ins)} checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words."},
+         "result": f"{passed(r_ins)} of {len(r_ins)} checks pass: one native bar chart, values and embedded workbook equal to the CSV, labels only on the extremes, no pictures, Arial only, footer present, no dash characters or banned words, file properties that name PptxGenJS and Claude Code."},
         {"what": "Render review",
-         "result": "All 24 names visible with no overlaps at 96 and 200 dpi, after a render where LibreOffice dropped every other name was fixed."},
+         "result": "All 24 names visible with no overlaps at 96 and 200 dpi. An earlier render that dropped every other name was fixed by setting the label interval to 1."},
     ],
 }
 

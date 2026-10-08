@@ -45,7 +45,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | The figure prints 79% for O&M, and the exact share is 78.78%. | $82,828M / $105,136M = 78.78% (checks.md). GAO's text rounds it the same way: 'about $83 billion (79 percent)' (PDF p. 10, printed p. 4). |
 | Ties in the printed shares cannot be ordered from the figure. | GAO drew every bar from its rounded percent (all 24 within 0.07 points, checks.md), so Defense, Interior and the Nuclear Regulatory Commission at 83%, for example, carry no finer detail. |
 | The published PDF and PNG use Liberation Sans where the .pptx names Arial. | pdffonts lists only LiberationSans and LiberationSans-Bold in both PDFs. LibreOffice substitutes this metric-compatible font, so widths and line breaks hold and glyph shapes differ slightly. |
-| No step in this build opened the file in Microsoft PowerPoint. | The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2, and File > Info in PowerPoint will name PptxGenJS. Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked. |
+| No step in this build opened the file in Microsoft PowerPoint. | The .pptx comes from PptxGenJS 4.0.1 and is checked with python-pptx 1.0.2. Its file properties name PptxGenJS 4.0.1 as the application and say Claude Code agents generated it (the inspector checks this). Renders, the overlay and every position calibration come from LibreOffice, so text positions in PowerPoint are unchecked. |
 
 ## Checks
 
@@ -57,7 +57,7 @@ How this was made: Claude Code agents rebuilt this GAO figure from the source im
 | Rounding of each agency's shares | All 24 rows add to 100. The rounded shares imply $82,847.15M of O&M against the printed $82,828M, inside the +/-$525.68M that whole-percent rounding allows. |
 | Bar lengths against their labels | All 24 bars measure within 0.07 points of their printed percents at 300 ppi (checks.md). |
 | Order | Totals strictly decrease down the figure. The closest pairs, Energy with Agriculture and USAID with EPA, are each $1M apart. |
-| Inspector (python-pptx) on faithful.pptx | 19 of 19 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present. A test builds broken decks and each one fails. |
+| Inspector (python-pptx) on faithful.pptx | 20 of 20 checks pass: one native 100% stacked bar chart, chart values and embedded workbook equal to the CSV, table equal to the CSV, outside labels, no pictures, Arial only, footer present, file properties that name PptxGenJS and Claude Code. A test builds broken decks and each one fails. |
 | Overlay on the published figure | RMSE 0.1425 on the figure at 300 dpi (the source image at its native resolution), 0.1387 at 96 dpi and 0.0908 for the whole slide, where 0 means identical. Bar outlines and dividers land within 1 px at 300 ppi. |
 
 Portfolio reconstruction of a public GAO figure. Not a GAO product.
